@@ -30,6 +30,18 @@ import UpdateTransmission from "../components/transmissions/UpdateTransportType"
 import DriveTypes from "../components/drive-types";
 import CreateDriveType from "../components/drive-types/CreateDriveType";
 import UpdateDriveType from "../components/drive-types/UpdateDriveType";
+import Engines from "../components/engines";
+import CreateEngine from "../components/engines/CreateEngine";
+import UpdateEngine from "../components/engines/UpdateEngine";
+import Years from "../components/years";
+import CreateYear from "../components/years/CreateYear";
+import UpdateYear from "../components/years/UpdateYear";
+import Seats from "../components/seats";
+import CreateSeat from "../components/seats/CreateSeat";
+import UpdateSeat from "../components/seats/UpdateSeat";
+import Stickers from "../components/stickers";
+import CreateSticker from "../components/stickers/CreateSticker";
+import UpdateSticker from "../components/stickers/UpdateSticker";
 
 export const privateRoutes = [
   {
@@ -328,6 +340,126 @@ export const privateRoutes = [
     element: (
       <MainLayout>
         <UpdateDriveType />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 32,
+    path: "/engines",
+    element: (
+      <MainLayout>
+        <Engines />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 33,
+    path: "/engine",
+    element: (
+      <MainLayout>
+        <CreateEngine />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 34,
+    path: "/engines/:id",
+    element: (
+      <MainLayout>
+        <UpdateEngine />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 35,
+    path: "/years",
+    element: (
+      <MainLayout>
+        <Years />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 36,
+    path: "/year",
+    element: (
+      <MainLayout>
+        <CreateYear />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 37,
+    path: "/years/:id",
+    element: (
+      <MainLayout>
+        <UpdateYear />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 38,
+    path: "/seats",
+    element: (
+      <MainLayout>
+        <Seats />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 39,
+    path: "/seat",
+    element: (
+      <MainLayout>
+        <CreateSeat />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 40,
+    path: "/seats/:id",
+    element: (
+      <MainLayout>
+        <UpdateSeat />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 41,
+    path: "/stickers",
+    element: (
+      <MainLayout>
+        <Stickers />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 42,
+    path: "/sticker",
+    element: (
+      <MainLayout>
+        <CreateSticker />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 43,
+    path: "/stickers/:id",
+    element: (
+      <MainLayout>
+        <UpdateSticker />
       </MainLayout>
     ),
     exact: true,

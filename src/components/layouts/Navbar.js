@@ -48,6 +48,19 @@ const Navbar = () => {
             </li>
             <li
               className={`nav-item menu-link-element ${
+                url.includes("/years") ? "bg-primary" : ""
+              }`}
+            >
+              <Link
+                className="nav-link text-white"
+                to="/years"
+                title="Год выпуска"
+              >
+                <span className="menu-link-text pl-2">Год выпуска</span>
+              </Link>
+            </li>
+            <li
+              className={`nav-item menu-link-element ${
                 url.includes("/marks") ? "bg-primary" : ""
               }`}
             >
@@ -113,6 +126,15 @@ const Navbar = () => {
             </li>
             <li
               className={`nav-item menu-link-element ${
+                url.includes("/seats") ? "bg-primary" : ""
+              }`}
+            >
+              <Link className="nav-link text-white" to="/seats" title="Сиденья">
+                <span className="menu-link-text pl-2">Сиденья</span>
+              </Link>
+            </li>
+            <li
+              className={`nav-item menu-link-element ${
                 url.includes("/slider-on-homepage") ? "bg-primary" : ""
               }`}
             >
@@ -148,6 +170,19 @@ const Navbar = () => {
                 title="Коробка передач"
               >
                 <span className="menu-link-text pl-2">Коробка передач</span>
+              </Link>
+            </li>
+            <li
+              className={`nav-item menu-link-element ${
+                url.includes("/engines") ? "bg-primary" : ""
+              }`}
+            >
+              <Link
+                className="nav-link text-white"
+                to="/engines"
+                title="Двигатель"
+              >
+                <span className="menu-link-text pl-2">Двигатель</span>
               </Link>
             </li>
             <li
@@ -239,6 +274,19 @@ const Navbar = () => {
                 title="Цвет экстерьера"
               >
                 <span className="menu-link-text pl-2">Цвет экстерьера</span>
+              </Link>
+            </li>
+            <li
+              className={`nav-item menu-link-element ${
+                url.includes("/stickers") ? "bg-primary" : ""
+              }`}
+            >
+              <Link
+                className="nav-link text-white"
+                to="/stickers"
+                title="Наклейки"
+              >
+                <span className="menu-link-text pl-2">Наклейки</span>
               </Link>
             </li>
           </ul>

@@ -41,13 +41,11 @@ const Header = ({ isLoading }) => {
         </button>
       ) : null}
       <Link
-        className={`${
+        className={`${!isMobile ? "col-sm-3 col-lg-2 col-md-3" : ""} ${
           !isMobile
-            ? "col-sm-3 col-lg-2 col-md-3"
-            : isMobile
-              ? ""
-              : "col-auto ml-auto header-logo-link-sidebar"
-        } ${!isMobile ? "navbar-brand" : ""} p-2 mr-0 p-0 pl-1`}
+            ? "navbar-brand"
+            : "col-auto ml-auto header-logo-link-sidebar"
+        } p-2 mr-0 p-0 pl-1`}
         to="/dashboard"
       >
         <span className={`${!isMobile ? "header-logo-sidebar" : ""}`}>
@@ -57,6 +55,7 @@ const Header = ({ isLoading }) => {
       {isLoading && <Loader />}
       <ul className="ml-md-auto mr-0 mr-md-4 navbar-nav">
         <li className="nav-item dropdown">
+          {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
           <button
             className="btn btn-dark btn-sm dropdown-toggle"
             role="button"

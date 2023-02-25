@@ -34,6 +34,7 @@ const Login = () => {
     <Card>
       <form className="form-signin" onSubmit={onHandleLogin}>
         <h1 className="h5 mb-4">Sign in</h1>
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="sr-only mt-2">Email address</label>
         <input
           type="email"
@@ -41,8 +42,8 @@ const Login = () => {
           className="form-control"
           placeholder="Email address"
           required
-          autoFocus
         />
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="sr-only">Password</label>
         <input
           type="password"

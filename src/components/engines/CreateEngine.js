@@ -4,69 +4,67 @@ import { useDispatch, useSelector } from "react-redux";
 import usePrevious from "../../utility/hooks/usePrevious";
 import SubHeader from "../SubHeader";
 import { MainContext } from "../../context/contexts";
-import { createModelRequest } from "../../redux/models/actions";
 import { toast } from "react-toastify";
-import ModelContent from "./ModelContent";
+import { createEngineRequest } from "../../redux/engines/actions";
+import FormContent from "../../components/FormContent";
 
-const CreateModel = () => {
+const CreateEngine = () => {
   const { setIsLoading } = useContext(MainContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isCreatedModelSuccess, isCreatedModelError } = useSelector(
-    (state) => state.models
+  const { isCreatedEngineSuccess, isCreatedEngineError } = useSelector(
+    (state) => state.engines
   );
 
-  const prevIsCreatedModelSuccess = usePrevious(isCreatedModelSuccess);
-  const prevIsCreatedModelError = usePrevious(isCreatedModelError);
+  const prevIsCreatedEngineSuccess = usePrevious(isCreatedEngineSuccess);
+  const prevIsCreatedEngineError = usePrevious(isCreatedEngineError);
 
   useEffect(() => {
-    document.title = "Model - create";
+    document.title = "Engine - create";
   }, []);
 
   useEffect(() => {
-    if (isCreatedModelSuccess && prevIsCreatedModelSuccess === false) {
-      toast.success("Model Created Successfully");
+    if (isCreatedEngineSuccess && prevIsCreatedEngineSuccess === false) {
       setIsLoading(false);
-      navigate("/models");
+      toast.success("Engine Created Successfully");
+      navigate("/engines");
     }
-  }, [isCreatedModelSuccess]);
+  }, [isCreatedEngineSuccess]);
 
   useEffect(() => {
-    if (isCreatedModelError && prevIsCreatedModelError === false) {
+    if (isCreatedEngineError && prevIsCreatedEngineError === false) {
       setIsLoading(false);
     }
-  }, [isCreatedModelError]);
+  }, [isCreatedEngineError]);
 
-  const createModel = (e) => {
+  const createEngine = (e) => {
     e.preventDefault();
     setIsLoading(true);
     const name = e.target.name.value;
-    const car_mark_id = e.target.car_mark_id.value;
 
     dispatch(
-      createModelRequest({
+      createEngineRequest({
         name,
-        car_mark_id,
       })
     );
   };
 
   return (
     <>
-      <form onSubmit={createModel}>
+      <form onSubmit={createEngine}>
         <SubHeader
-          title="Model"
+          title="Engine"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
               Save
             </button>
           }
         />
-        <ModelContent />
+        <FormContent />
       </form>
     </>
   );
 };
 
-export default CreateModel;
+export default CreateEngine;

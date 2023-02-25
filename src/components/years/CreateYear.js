@@ -4,69 +4,67 @@ import { useDispatch, useSelector } from "react-redux";
 import usePrevious from "../../utility/hooks/usePrevious";
 import SubHeader from "../SubHeader";
 import { MainContext } from "../../context/contexts";
-import { createModelRequest } from "../../redux/models/actions";
 import { toast } from "react-toastify";
-import ModelContent from "./ModelContent";
+import { createYearRequest } from "../../redux/years/actions";
+import FormContent from "../../components/FormContent";
 
-const CreateModel = () => {
+const CreateYear = () => {
   const { setIsLoading } = useContext(MainContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isCreatedModelSuccess, isCreatedModelError } = useSelector(
-    (state) => state.models
+  const { isCreatedYearSuccess, isCreatedYearError } = useSelector(
+    (state) => state.years
   );
 
-  const prevIsCreatedModelSuccess = usePrevious(isCreatedModelSuccess);
-  const prevIsCreatedModelError = usePrevious(isCreatedModelError);
+  const prevIsCreatedYearSuccess = usePrevious(isCreatedYearSuccess);
+  const prevIsCreatedYearError = usePrevious(isCreatedYearError);
 
   useEffect(() => {
-    document.title = "Model - create";
+    document.title = "Year - create";
   }, []);
 
   useEffect(() => {
-    if (isCreatedModelSuccess && prevIsCreatedModelSuccess === false) {
-      toast.success("Model Created Successfully");
+    if (isCreatedYearSuccess && prevIsCreatedYearSuccess === false) {
       setIsLoading(false);
-      navigate("/models");
+      toast.success("Year Created Successfully");
+      navigate("/years");
     }
-  }, [isCreatedModelSuccess]);
+  }, [isCreatedYearSuccess]);
 
   useEffect(() => {
-    if (isCreatedModelError && prevIsCreatedModelError === false) {
+    if (isCreatedYearError && prevIsCreatedYearError === false) {
       setIsLoading(false);
     }
-  }, [isCreatedModelError]);
+  }, [isCreatedYearError]);
 
-  const createModel = (e) => {
+  const createYear = (e) => {
     e.preventDefault();
     setIsLoading(true);
     const name = e.target.name.value;
-    const car_mark_id = e.target.car_mark_id.value;
 
     dispatch(
-      createModelRequest({
-        name,
-        car_mark_id,
+      createYearRequest({
+        year: name,
       })
     );
   };
 
   return (
     <>
-      <form onSubmit={createModel}>
+      <form onSubmit={createYear}>
         <SubHeader
-          title="Model"
+          title="Year"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
               Save
             </button>
           }
         />
-        <ModelContent />
+        <FormContent />
       </form>
     </>
   );
 };
 
-export default CreateModel;
+export default CreateYear;

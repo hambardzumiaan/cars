@@ -10,6 +10,10 @@ import locations from "./locations/reducer";
 import transportTypes from "./transportTypes/reducer";
 import driveTypes from "./driveTypes/reducer";
 import transmissions from "./transmissions/reducer";
+import engines from "./engines/reducer";
+import years from "./years/reducer";
+import seats from "./seats/reducer";
+import stickers from "./stickers/reducer";
 
 const rootReducer = combineReducers({
   auth,
@@ -23,6 +27,10 @@ const rootReducer = combineReducers({
   locations,
   transmissions,
   driveTypes,
+  engines,
+  years,
+  seats,
+  stickers,
 });
 
 export default rootReducer;

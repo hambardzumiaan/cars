@@ -4,69 +4,67 @@ import { useDispatch, useSelector } from "react-redux";
 import usePrevious from "../../utility/hooks/usePrevious";
 import SubHeader from "../SubHeader";
 import { MainContext } from "../../context/contexts";
-import { createModelRequest } from "../../redux/models/actions";
 import { toast } from "react-toastify";
-import ModelContent from "./ModelContent";
+import { createSeatRequest } from "../../redux/seats/actions";
+import FormContent from "../../components/FormContent";
 
-const CreateModel = () => {
+const CreateSeat = () => {
   const { setIsLoading } = useContext(MainContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isCreatedModelSuccess, isCreatedModelError } = useSelector(
-    (state) => state.models
+  const { isCreatedSeatSuccess, isCreatedSeatError } = useSelector(
+    (state) => state.seats
   );
 
-  const prevIsCreatedModelSuccess = usePrevious(isCreatedModelSuccess);
-  const prevIsCreatedModelError = usePrevious(isCreatedModelError);
+  const prevIsCreatedSeatSuccess = usePrevious(isCreatedSeatSuccess);
+  const prevIsCreatedSeatError = usePrevious(isCreatedSeatError);
 
   useEffect(() => {
-    document.title = "Model - create";
+    document.title = "Seat - create";
   }, []);
 
   useEffect(() => {
-    if (isCreatedModelSuccess && prevIsCreatedModelSuccess === false) {
-      toast.success("Model Created Successfully");
+    if (isCreatedSeatSuccess && prevIsCreatedSeatSuccess === false) {
       setIsLoading(false);
-      navigate("/models");
+      toast.success("Seat Created Successfully");
+      navigate("/seats");
     }
-  }, [isCreatedModelSuccess]);
+  }, [isCreatedSeatSuccess]);
 
   useEffect(() => {
-    if (isCreatedModelError && prevIsCreatedModelError === false) {
+    if (isCreatedSeatError && prevIsCreatedSeatError === false) {
       setIsLoading(false);
     }
-  }, [isCreatedModelError]);
+  }, [isCreatedSeatError]);
 
-  const createModel = (e) => {
+  const createSeat = (e) => {
     e.preventDefault();
     setIsLoading(true);
     const name = e.target.name.value;
-    const car_mark_id = e.target.car_mark_id.value;
 
     dispatch(
-      createModelRequest({
+      createSeatRequest({
         name,
-        car_mark_id,
       })
     );
   };
 
   return (
     <>
-      <form onSubmit={createModel}>
+      <form onSubmit={createSeat}>
         <SubHeader
-          title="Model"
+          title="Seat"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
               Save
             </button>
           }
         />
-        <ModelContent />
+        <FormContent />
       </form>
     </>
   );
 };
 
-export default CreateModel;
+export default CreateSeat;
