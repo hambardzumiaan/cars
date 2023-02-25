@@ -1,0 +1,72 @@
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import usePrevious from "../../utility/hooks/usePrevious";
+import SubHeader from "../SubHeader";
+import { MainContext } from "../../context/contexts";
+import { createModelRequest } from "../../redux/models/actions";
+import { toast } from "react-toastify";
+import FormContent from "../FormContent";
+
+const CreateModel = () => {
+  const { setIsLoading } = useContext(MainContext);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isCreatedModelSuccess, isCreatedModelError } = useSelector(
+    (state) => state.models
+  );
+
+  const prevIsCreatedModelSuccess = usePrevious(isCreatedModelSuccess);
+  const prevIsCreatedModelError = usePrevious(isCreatedModelError);
+
+  useEffect(() => {
+    document.title = "Model - create";
+  }, []);
+
+  useEffect(() => {
+    if (isCreatedModelSuccess && prevIsCreatedModelSuccess === false) {
+      toast.success("Model Created Successfully");
+      setIsLoading(false);
+      navigate("/models");
+    }
+  }, [isCreatedModelSuccess]);
+
+  useEffect(() => {
+    if (isCreatedModelError && prevIsCreatedModelError === false) {
+      setIsLoading(false);
+    }
+  }, [isCreatedModelError]);
+
+  const createModel = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const name = e.target.name.value;
+    const car_mark_id = e.target.car_mark_id.value;
+
+    dispatch(
+      createModelRequest({
+        name,
+        car_mark_id,
+      })
+    );
+  };
+
+  return (
+    <>
+      <form onSubmit={createModel}>
+        <SubHeader
+          title="Model"
+          actions={
+            <button className="btn btn-outline-info mr-2" type="submit">
+              Save
+            </button>
+          }
+        />
+        <FormContent />
+      </form>
+    </>
+  );
+};
+
+export default CreateModel;
