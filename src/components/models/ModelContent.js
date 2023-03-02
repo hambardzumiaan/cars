@@ -29,7 +29,7 @@ const ModelContent = ({ model }) => {
     <>
       <div className="row align-items-center">
         <div className="col-6 col-lg">
-          <label>Name</label>
+          <label htmlFor="name">Название</label>
           <input
             type="text"
             className="form-control"
@@ -40,7 +40,7 @@ const ModelContent = ({ model }) => {
           />
         </div>
         <div className="col-6 col-lg">
-          <label>Mark</label>
+          <label htmlFor="mark">Марка</label>
           <select
             className="form-control"
             name="car_mark_id"

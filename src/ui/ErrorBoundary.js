@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component {
             height: "100vh",
           }}
         >
-          <h3 className="text-danger">Something went wrong...</h3>
+          <h3 className="text-danger">Что-то пошло не так...</h3>
         </div>
       );
     }

@@ -10,7 +10,7 @@ const FormContent = ({ data = {}, name = "name" }) => {
       <div className="row align-items-center">
         <div className="col-12 col-lg">
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label>Name</label>
+          <label>Название</label>
           <input
             type="text"
             className="form-control"

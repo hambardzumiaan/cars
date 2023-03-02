@@ -17,14 +17,14 @@ const PageNotFound = ({ isLogged }) => {
         <span>4</span>
         <h3 className="h2 text-center">
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          Look like you're lost
+          Похоже, ты потерялся
         </h3>
 
         <h5 className="text-center">
-          <p>the page you are looking for not available!</p>
+          <p>страница, которую вы ищете, недоступна!</p>
           {!isLogged && (
             <Link to="/login" className="btn btn-primary mt-3">
-              Go to login
+              Перейти к входу
             </Link>
           )}
         </h5>

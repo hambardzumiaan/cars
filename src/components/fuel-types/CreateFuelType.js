@@ -21,13 +21,13 @@ const CreateFuelType = () => {
   const prevIsCreatedFuelTypeError = usePrevious(isCreatedFuelTypeError);
 
   useEffect(() => {
-    document.title = "Fuel type - create";
+    document.title = "Тип топлива - создать";
   }, []);
 
   useEffect(() => {
     if (isCreatedFuelTypeSuccess && prevIsCreatedFuelTypeSuccess === false) {
       setIsLoading(false);
-      toast.success("Fuel Type Created Successfully");
+      toast.success("Тип топлива успешно создан");
       navigate("/fuel-types");
     }
   }, [isCreatedFuelTypeSuccess]);
@@ -54,10 +54,10 @@ const CreateFuelType = () => {
     <>
       <form onSubmit={createFuelType}>
         <SubHeader
-          title="Fuel Type"
+          title="Тип топлива"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

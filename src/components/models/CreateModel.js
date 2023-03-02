@@ -21,12 +21,12 @@ const CreateModel = () => {
   const prevIsCreatedModelError = usePrevious(isCreatedModelError);
 
   useEffect(() => {
-    document.title = "Model - create";
+    document.title = "Модель - создать";
   }, []);
 
   useEffect(() => {
     if (isCreatedModelSuccess && prevIsCreatedModelSuccess === false) {
-      toast.success("Model Created Successfully");
+      toast.success("Модель успешно создана");
       setIsLoading(false);
       navigate("/models");
     }
@@ -56,10 +56,10 @@ const CreateModel = () => {
     <>
       <form onSubmit={createModel}>
         <SubHeader
-          title="Model"
+          title="Модель"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

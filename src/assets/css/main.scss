@@ -113,7 +113,7 @@ a:hover {
 }
 
 .header-logo-sidebar {
-  width: 40px;
+  width: 80%;
   overflow: hidden;
   display: block;
 }
@@ -486,3 +486,8 @@ body {
   text-decoration: none !important;
 }
 
+.cancel-button {
+  position: absolute;
+  right: 20px;
+  color: red;
+}

@@ -7,7 +7,7 @@ function Table({ data, deletionModal, link, name = "name" }) {
       <table className="border table table-light table-striped">
         <thead className="table-light">
           <tr>
-            <th>Name</th>
+            <th>Название</th>
             <th className="function-col text-right" />
           </tr>
         </thead>
@@ -25,7 +25,7 @@ function Table({ data, deletionModal, link, name = "name" }) {
                       type="button"
                       onClick={() => deletionModal(item)}
                     >
-                      Delete
+                      Удалить
                     </button>
                   </div>
                 </td>

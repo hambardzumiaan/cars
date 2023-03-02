@@ -30,7 +30,7 @@ const UpdateDriveType = () => {
   const prevIsUpdatedDriveTypeError = usePrevious(isUpdatedDriveTypeError);
 
   useEffect(() => {
-    document.title = "Drive Type";
+    document.title = "Тип вождения";
     dispatch(getDriveTypeRequest(id));
   }, []);
 
@@ -52,7 +52,7 @@ const UpdateDriveType = () => {
   useEffect(() => {
     if (isUpdatedDriveTypeSuccess && prevIsUpdatedDriveTypeSuccess === false) {
       setIsLoading(false);
-      toast.success("Drive Type Updated Successfully");
+      toast.success("Тип диска успешно обновлен");
     }
   }, [isUpdatedDriveTypeSuccess]);
 
@@ -75,10 +75,10 @@ const UpdateDriveType = () => {
     <>
       <form onSubmit={updateDriveType}>
         <SubHeader
-          title="Drive type"
+          title="Тип привода"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

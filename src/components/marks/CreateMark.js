@@ -21,12 +21,12 @@ const CreateMark = () => {
   const prevIsCreatedMarkError = usePrevious(isCreatedMarkError);
 
   useEffect(() => {
-    document.title = "Mark - create";
+    document.title = "Марка автомобиля - создать";
   }, []);
 
   useEffect(() => {
     if (isCreatedMarkSuccess && prevIsCreatedMarkSuccess === false) {
-      toast.success("Mark Created Successfully");
+      toast.success("Марка автомобиля успешно создана");
       setIsLoading(false);
       navigate("/marks");
     }
@@ -54,10 +54,10 @@ const CreateMark = () => {
     <>
       <form onSubmit={createMark}>
         <SubHeader
-          title="Mark"
+          title="Марка"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

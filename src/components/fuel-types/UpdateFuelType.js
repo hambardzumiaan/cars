@@ -1,10 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createFuelTypeRequest,
-  getFuelTypeRequest,
-} from "../../redux/fuelTypes/actions";
+import { getFuelTypeRequest } from "../../redux/fuelTypes/actions";
 import usePrevious from "../../utility/hooks/usePrevious";
 import SubHeader from "../SubHeader";
 import { MainContext } from "../../context/contexts";
@@ -32,7 +28,7 @@ const UpdateFuelType = () => {
   const prevIsUpdatedFuelTypeError = usePrevious(isUpdatedFuelTypeError);
 
   useEffect(() => {
-    document.title = "Fuel Type";
+    document.title = "Тип топлива";
     dispatch(getFuelTypeRequest(id));
   }, []);
 
@@ -54,7 +50,7 @@ const UpdateFuelType = () => {
   useEffect(() => {
     if (isUpdatedFuelTypeSuccess && prevIsUpdatedFuelTypeSuccess === false) {
       setIsLoading(false);
-      toast.success("Fuel Type Updated Successfully");
+      toast.success("Тип топлива успешно обновлен");
     }
   }, [isUpdatedFuelTypeSuccess]);
 
@@ -77,10 +73,10 @@ const UpdateFuelType = () => {
     <>
       <form onSubmit={updateFuelType}>
         <SubHeader
-          title="Fuel type"
+          title="Тип топлива"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

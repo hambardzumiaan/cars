@@ -6,7 +6,6 @@ import fuelTypes from "../redux/fuelTypes/saga";
 import bodyStyles from "../redux/bodyStyles/saga";
 import interiorColors from "./interiorColors/saga";
 import exteriorColors from "./exteriorColors/saga";
-import locations from "./locations/saga";
 import transportTypes from "./transportTypes/saga";
 import driveTypes from "./driveTypes/saga";
 import transmissions from "./transmissions/saga";
@@ -14,6 +13,7 @@ import engines from "./engines/saga";
 import years from "./years/saga";
 import seats from "./seats/saga";
 import stickers from "./stickers/saga";
+import cars from "./cars/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -24,7 +24,7 @@ export default function* rootSaga() {
     bodyStyles(),
     interiorColors(),
     exteriorColors(),
-    locations(),
+    cars(),
     transportTypes(),
     driveTypes(),
     transmissions(),

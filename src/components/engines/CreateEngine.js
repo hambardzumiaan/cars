@@ -21,13 +21,13 @@ const CreateEngine = () => {
   const prevIsCreatedEngineError = usePrevious(isCreatedEngineError);
 
   useEffect(() => {
-    document.title = "Engine - create";
+    document.title = "Двигатель - создать";
   }, []);
 
   useEffect(() => {
     if (isCreatedEngineSuccess && prevIsCreatedEngineSuccess === false) {
       setIsLoading(false);
-      toast.success("Engine Created Successfully");
+      toast.success("Двигатель успешно создан");
       navigate("/engines");
     }
   }, [isCreatedEngineSuccess]);
@@ -54,10 +54,10 @@ const CreateEngine = () => {
     <>
       <form onSubmit={createEngine}>
         <SubHeader
-          title="Engine"
+          title="Двигатель"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

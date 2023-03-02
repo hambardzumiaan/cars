@@ -27,36 +27,38 @@ const Login = () => {
   };
 
   useEffect(() => {
-    document.title = "Sing in";
+    document.title = "Авторизоваться";
   }, []);
 
   return (
     <Card>
       <form className="form-signin" onSubmit={onHandleLogin}>
-        <h1 className="h5 mb-4">Sign in</h1>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label className="sr-only mt-2">Email address</label>
+        <h1 className="h5 mb-4">Авторизоваться</h1>
+        <label className="sr-only mt-2" htmlFor="Электронная почта">
+          Электронная почта
+        </label>
         <input
           type="email"
           name="email"
           className="form-control"
-          placeholder="Email address"
+          placeholder="Электронная почта"
           required
         />
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label className="sr-only">Password</label>
+        <label className="sr-only" htmlFor="Пароль">
+          Пароль
+        </label>
         <input
           type="password"
           name="password"
           className="form-control"
-          placeholder="Password"
+          placeholder="Пароль"
           required
         />
         <button
           className="btn btn-lg btn-outline-dark btn-block w-100"
           type="submit"
         >
-          Submit
+          Войти
         </button>
         <hr />
         <CardsBottomSide />

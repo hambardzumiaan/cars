@@ -28,7 +28,7 @@ const UpdateModel = () => {
   const prevIsUpdatedModelSuccess = usePrevious(isUpdatedModelSuccess);
 
   useEffect(() => {
-    document.title = "Model";
+    document.title = "Модель";
     dispatch(getModelRequest(id));
   }, []);
 
@@ -41,14 +41,13 @@ const UpdateModel = () => {
   useEffect(() => {
     if (isUpdatedModelSuccess && prevIsUpdatedModelSuccess === false) {
       setIsLoading(false);
-      toast.success("Model Updated Successfully");
+      toast.success("Модель успешно обновлена");
     }
   }, [isUpdatedModelSuccess]);
 
   useEffect(() => {
     if (isUpdatedModelError && prevIsUpdatedModelError === false) {
       setIsLoading(false);
-      toast.error("Something went wrong...");
     }
   }, [isUpdatedModelError]);
 
@@ -79,10 +78,10 @@ const UpdateModel = () => {
     <>
       <form onSubmit={updateModel}>
         <SubHeader
-          title="Model"
+          title="Модель"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

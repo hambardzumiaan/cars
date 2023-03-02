@@ -21,13 +21,13 @@ const CreateSeat = () => {
   const prevIsCreatedSeatError = usePrevious(isCreatedSeatError);
 
   useEffect(() => {
-    document.title = "Seat - create";
+    document.title = "Сиденье - создать";
   }, []);
 
   useEffect(() => {
     if (isCreatedSeatSuccess && prevIsCreatedSeatSuccess === false) {
       setIsLoading(false);
-      toast.success("Seat Created Successfully");
+      toast.success("Место успешно создано");
       navigate("/seats");
     }
   }, [isCreatedSeatSuccess]);
@@ -54,10 +54,10 @@ const CreateSeat = () => {
     <>
       <form onSubmit={createSeat}>
         <SubHeader
-          title="Seat"
+          title="Сиденье"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

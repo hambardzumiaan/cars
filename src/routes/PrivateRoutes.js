@@ -18,9 +18,9 @@ import UpdateInteriorColor from "../components/interior-colors/UpdateInteriorCol
 import CreateExteriorColor from "../components/exterior-colors/CreateExteriorColor";
 import UpdateExteriorColor from "../components/exterior-colors/UpdateExteriorColor";
 import ExteriorColors from "../components/exterior-colors";
-import Locations from "../components/locations";
-import CreateLocation from "../components/locations/CreateLocation";
-import UpdateLocation from "../components/locations/UpdateLocation";
+import Cars from "../components/cars";
+import CreateCar from "../components/cars/CreateCar";
+import UpdateCar from "../components/cars/UpdateCar";
 import TransportTypes from "../components/transport-types";
 import CreateTransportType from "../components/transport-types/CreateTransportType";
 import UpdateTransportType from "../components/transport-types/UpdateTransportType";
@@ -226,30 +226,30 @@ export const privateRoutes = [
   },
   {
     id: 20,
-    path: "/locations",
+    path: "/cars",
     element: (
       <MainLayout>
-        <Locations />
+        <Cars />
       </MainLayout>
     ),
     exact: true,
   },
   {
     id: 21,
-    path: "/location",
+    path: "/car",
     element: (
       <MainLayout>
-        <CreateLocation />
+        <CreateCar />
       </MainLayout>
     ),
     exact: true,
   },
   {
     id: 22,
-    path: "/locations/:id",
+    path: "/cars/:id",
     element: (
       <MainLayout>
-        <UpdateLocation />
+        <UpdateCar />
       </MainLayout>
     ),
     exact: true,

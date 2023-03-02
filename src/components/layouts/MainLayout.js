@@ -46,7 +46,7 @@ const MainLayout = ({ children }) => {
 
   return (
     <>
-      <MainContext.Provider value={{ setIsLoading, isMobile }}>
+      <MainContext.Provider value={{ setIsLoading, isLoading, isMobile }}>
         <Header isLoading={isLoading} />
         <div className="container-fluid">
           <div className="row">

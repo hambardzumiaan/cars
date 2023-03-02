@@ -24,7 +24,7 @@ const CreateExteriorColor = () => {
   );
 
   useEffect(() => {
-    document.title = "Exterior color - create";
+    document.title = "Цвет экстерьера - создать";
   }, []);
 
   useEffect(() => {
@@ -33,8 +33,8 @@ const CreateExteriorColor = () => {
       prevIsCreatedExteriorColorSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Exterior Color Created Successfully");
-      navigate("/Exterior-colors");
+      toast.success("Внешний цвет успешно создан");
+      navigate("/exterior-colors");
     }
   }, [isCreatedExteriorColorSuccess]);
 
@@ -63,10 +63,10 @@ const CreateExteriorColor = () => {
     <>
       <form onSubmit={createExteriorColor}>
         <SubHeader
-          title="Exterior color"
+          title="Внешний цвет"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

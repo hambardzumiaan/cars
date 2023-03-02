@@ -24,7 +24,7 @@ const CreateTransportType = () => {
   );
 
   useEffect(() => {
-    document.title = "Transport type - create";
+    document.title = "Тип транспорта - создать";
   }, []);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const CreateTransportType = () => {
       prevIsCreatedTransportTypeSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Transport Type Created Successfully");
+      toast.success("Тип транспорта успешно создан");
       navigate("/transport-types");
     }
   }, [isCreatedTransportTypeSuccess]);
@@ -63,10 +63,10 @@ const CreateTransportType = () => {
     <>
       <form onSubmit={createTransportType}>
         <SubHeader
-          title="Transport Type"
+          title="Тип транспорта"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

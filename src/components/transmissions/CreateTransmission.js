@@ -24,7 +24,7 @@ const CreateTransmission = () => {
   );
 
   useEffect(() => {
-    document.title = "Transmission - create";
+    document.title = "Передача - создать";
   }, []);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const CreateTransmission = () => {
       prevIsCreatedTransmissionSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Transmission Created Successfully");
+      toast.success("Передача успешно создана");
       navigate("/transmissions");
     }
   }, [isCreatedTransmissionSuccess]);
@@ -63,10 +63,10 @@ const CreateTransmission = () => {
     <>
       <form onSubmit={createTransmission}>
         <SubHeader
-          title="Transport Type"
+          title="Передача инфекции"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

@@ -34,7 +34,7 @@ const Models = () => {
   const [modelsClone, setModelsClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Models - list";
+    document.title = "Модели - список";
     setIsLoading(true);
     dispatch(getModelsRequest());
   }, []);
@@ -86,12 +86,12 @@ const Models = () => {
   return (
     <>
       <SubHeader
-        title="Models"
+        title="Модели"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/model">
-              <button className="btn btn-outline-info" title="Add model">
-                Add
+              <button className="btn btn-outline-info" title="Добавить">
+                Добавить
               </button>
             </Link>
           </div>
@@ -101,8 +101,8 @@ const Models = () => {
         <table className="border table table-light table-striped">
           <thead className="table-light">
             <tr>
-              <th>Name</th>
-              <th>Mark</th>
+              <th>Название</th>
+              <th>Марка</th>
               <th className="function-col text-right" />
             </tr>
           </thead>
@@ -138,10 +138,10 @@ const Models = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Delete model"
+        title="Удалить модель"
         message={
           <span>
-            Do you want to delete <b>{selectedModel.name}</b> model?
+            Вы хотите удалить <b>{selectedModel.name}</b> модель?
           </span>
         }
         open={isModelDeleteModalOpen}

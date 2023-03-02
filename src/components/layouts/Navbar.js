@@ -35,19 +35,6 @@ const Navbar = () => {
             </li>
             <li
               className={`nav-item menu-link-element ${
-                url.includes("/mileage-measurement") ? "bg-primary" : ""
-              }`}
-            >
-              <Link
-                className="nav-link text-white"
-                to="/mileage-measurement"
-                title="Измерение пробега"
-              >
-                <span className="menu-link-text pl-2">Измерение пробега</span>
-              </Link>
-            </li>
-            <li
-              className={`nav-item menu-link-element ${
                 url.includes("/years") ? "bg-primary" : ""
               }`}
             >
@@ -74,15 +61,11 @@ const Navbar = () => {
             </li>
             <li
               className={`nav-item menu-link-element ${
-                url.includes("/locations") ? "bg-primary" : ""
+                url.includes("/cars") ? "bg-primary" : ""
               }`}
             >
-              <Link
-                className="nav-link text-white"
-                to="/locations"
-                title="Место нахождения"
-              >
-                <span className="menu-link-text pl-2">Место нахождения</span>
+              <Link className="nav-link text-white" to="/cars" title="Машины">
+                <span className="menu-link-text pl-2">Машины</span>
               </Link>
             </li>
             <li
@@ -100,63 +83,11 @@ const Navbar = () => {
             </li>
             <li
               className={`nav-item menu-link-element ${
-                url.includes("/damage") ? "bg-primary" : ""
-              }`}
-            >
-              <Link
-                className="nav-link text-white"
-                to="/damage"
-                title="Повреждения"
-              >
-                <span className="menu-link-text pl-2">Повреждения</span>
-              </Link>
-            </li>
-            <li
-              className={`nav-item menu-link-element ${
-                url.includes("/auto-drive") ? "bg-primary" : ""
-              }`}
-            >
-              <Link
-                className="nav-link text-white"
-                to="/auto-drive"
-                title="Привод авто"
-              >
-                <span className="menu-link-text pl-2">Привод авто</span>
-              </Link>
-            </li>
-            <li
-              className={`nav-item menu-link-element ${
                 url.includes("/seats") ? "bg-primary" : ""
               }`}
             >
               <Link className="nav-link text-white" to="/seats" title="Сиденья">
                 <span className="menu-link-text pl-2">Сиденья</span>
-              </Link>
-            </li>
-            <li
-              className={`nav-item menu-link-element ${
-                url.includes("/slider-on-homepage") ? "bg-primary" : ""
-              }`}
-            >
-              <Link
-                className="nav-link text-white"
-                to="/slider-on-homepage"
-                title="Слайдер на главной"
-              >
-                <span className="menu-link-text pl-2">Слайдер на главной</span>
-              </Link>
-            </li>
-            <li
-              className={`nav-item menu-link-element ${
-                url.includes("/clutch") ? "bg-primary" : ""
-              }`}
-            >
-              <Link
-                className="nav-link text-white"
-                to="/clutch"
-                title="Сцепления"
-              >
-                <span className="menu-link-text pl-2">Сцепления</span>
               </Link>
             </li>
             <li
@@ -235,19 +166,6 @@ const Navbar = () => {
                 title="Тип транспорта"
               >
                 <span className="menu-link-text pl-2">Тип транспорта</span>
-              </Link>
-            </li>
-            <li
-              className={`nav-item menu-link-element ${
-                url.includes("/service-types") ? "bg-primary" : ""
-              }`}
-            >
-              <Link
-                className="nav-link text-white"
-                to="/service-types"
-                title="Тип услуги"
-              >
-                <span className="menu-link-text pl-2">Тип услуги</span>
               </Link>
             </li>
             <li

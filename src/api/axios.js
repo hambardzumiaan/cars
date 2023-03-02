@@ -11,6 +11,8 @@ axiosApiInstance.interceptors.request.use(
       : window.location.origin + "/api";
     if (Authorization) {
       config.headers.Authorization = `Bearer ${Authorization}`;
+      config.headers["Content-Type"] = "multipart/form-data";
+      config.headers["enctype"] = "multipart/form-data";
     }
     return config;
   },
@@ -25,7 +27,7 @@ axiosApiInstance.interceptors.response.use(
   },
   async function (error) {
     try {
-      toast.error("Something went wrong...");
+      toast.error("Что-то пошло не так...");
       return Promise.reject(error);
     } catch (e) {
       return Promise.reject(e);

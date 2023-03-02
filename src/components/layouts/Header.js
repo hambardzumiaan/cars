@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { privateRoutes } from "../../routes/PrivateRoutes";
 import { MainContext } from "../../context/contexts";
 import { Loader } from "../../utility";
+import { ReactComponent as Logo } from "../../assets/images/logo.svg";
 
 const Header = ({ isLoading }) => {
   const { isMobile } = useContext(MainContext);
@@ -49,7 +50,7 @@ const Header = ({ isLoading }) => {
         to="/dashboard"
       >
         <span className={`${!isMobile ? "header-logo-sidebar" : ""}`}>
-          Logo
+          <Logo height="25" />
         </span>
       </Link>
       {isLoading && <Loader />}
@@ -63,7 +64,7 @@ const Header = ({ isLoading }) => {
             data-toggle="dropdown"
             aria-expanded="false"
           >
-            <span className="mr-1">Settings</span>
+            <span className="mr-1">Настройки</span>
           </button>
           <div
             className={`dropdown-menu dropdown-menu-md-right position-absolute ${
@@ -76,7 +77,7 @@ const Header = ({ isLoading }) => {
               type="button"
               onClick={onHandleLogout}
             >
-              Sign out
+              Выйти
             </button>
           </div>
         </li>

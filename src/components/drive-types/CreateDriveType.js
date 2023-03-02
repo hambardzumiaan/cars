@@ -21,13 +21,13 @@ const CreateDriveType = () => {
   const prevIsCreatedDriveTypeError = usePrevious(isCreatedDriveTypeError);
 
   useEffect(() => {
-    document.title = "Drive type - create";
+    document.title = "Тип привода - создать";
   }, []);
 
   useEffect(() => {
     if (isCreatedDriveTypeSuccess && prevIsCreatedDriveTypeSuccess === false) {
       setIsLoading(false);
-      toast.success("Drive Type Created Successfully");
+      toast.success("Тип диска успешно создан");
       navigate("/drive-types");
     }
   }, [isCreatedDriveTypeSuccess]);
@@ -54,10 +54,10 @@ const CreateDriveType = () => {
     <>
       <form onSubmit={createDriveType}>
         <SubHeader
-          title="Drive Type"
+          title="Тип привода"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

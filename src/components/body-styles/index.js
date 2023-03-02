@@ -35,7 +35,7 @@ const BodyStyles = () => {
   const [bodyStylesClone, setBodyStylesClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Body styles - list";
+    document.title = "Стили кузова - список";
     setIsLoading(true);
     dispatch(getBodyStylesRequest());
   }, []);
@@ -59,7 +59,7 @@ const BodyStyles = () => {
 
   useEffect(() => {
     if (isDeletedBodyStyleSuccess && prevIsDeletedBodyStyleSuccess === false) {
-      toast.success("Body Style Deleted Successfully");
+      toast.success("Стиль кузова успешно удален.");
       setIsLoading(false);
       setBodyStylesClone(
         bodyStylesClone.filter(
@@ -90,12 +90,12 @@ const BodyStyles = () => {
   return (
     <>
       <SubHeader
-        title="Body styles"
+        title="Стили кузова"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/body-style">
-              <button className="btn btn-outline-info" title="Add">
-                Add
+              <button className="btn btn-outline-info" title="Добавить">
+                Добавить
               </button>
             </Link>
           </div>
@@ -109,10 +109,10 @@ const BodyStyles = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Delete body style"
+        title="Удалить стиль тела"
         message={
           <span>
-            Do you want to delete <b>{selectedBodyStyle.name}</b> body style?
+            Вы хотите удалить <b>{selectedBodyStyle.name}</b> тип кузова?
           </span>
         }
         open={isBodyStyleDeleteModalOpen}

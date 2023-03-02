@@ -6,7 +6,7 @@ import fuelTypes from "../redux/fuelTypes/reducer";
 import bodyStyles from "../redux/bodyStyles/reducer";
 import interiorColors from "./interiorColors/reducer";
 import exteriorColors from "./exteriorColors/reducer";
-import locations from "./locations/reducer";
+import cars from "./cars/reducer";
 import transportTypes from "./transportTypes/reducer";
 import driveTypes from "./driveTypes/reducer";
 import transmissions from "./transmissions/reducer";
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   bodyStyles,
   interiorColors,
   exteriorColors,
-  locations,
+  cars,
   transmissions,
   driveTypes,
   engines,

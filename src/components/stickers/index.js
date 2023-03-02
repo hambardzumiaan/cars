@@ -35,7 +35,7 @@ const Stickers = () => {
   const [stickersClone, setStickersClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Stickers - list";
+    document.title = "Наклейки - список";
     setIsLoading(true);
     dispatch(getStickersRequest());
   }, []);
@@ -87,12 +87,12 @@ const Stickers = () => {
   return (
     <>
       <SubHeader
-        title="Stickers"
+        title="Наклейки"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/sticker">
-              <button className="btn btn-outline-info" title="Add Sticker">
-                Add
+              <button className="btn btn-outline-info" title="Добавить">
+                Добавить
               </button>
             </Link>
           </div>
@@ -102,8 +102,8 @@ const Stickers = () => {
         <table className="border table table-light table-striped">
           <thead className="table-light">
             <tr>
-              <th>Text</th>
-              <th>Color</th>
+              <th>Текст</th>
+              <th>Цвет</th>
               <th className="function-col text-right" />
             </tr>
           </thead>
@@ -120,7 +120,7 @@ const Stickers = () => {
                           className="btn btn-outline-dark mr-3"
                           type="button"
                         >
-                          Edit
+                          Редактировать
                         </button>
                       </Link>
                       <button
@@ -128,7 +128,7 @@ const Stickers = () => {
                         type="button"
                         onClick={() => handleShowDeleteModal(sticker)}
                       >
-                        Delete
+                        Удалить
                       </button>
                     </div>
                   </td>
@@ -141,10 +141,10 @@ const Stickers = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Delete Sticker"
+        title="Удалить стикер"
         message={
           <span>
-            Do you want to delete <b>{selectedSticker.name}</b> sticker?
+            Вы хотите удалить <b>{selectedSticker.name}</b> стикер?
           </span>
         }
         open={isStickerDeleteModalOpen}

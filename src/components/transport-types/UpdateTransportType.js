@@ -34,7 +34,7 @@ const UpdateTransportType = () => {
   );
 
   useEffect(() => {
-    document.title = "Transport Type";
+    document.title = "Тип транспорта";
     dispatch(getTransportTypeRequest(id));
   }, []);
 
@@ -59,7 +59,7 @@ const UpdateTransportType = () => {
       prevIsUpdatedTransportTypeSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Transport Type Updated Successfully");
+      toast.success("Тип транспорта успешно обновлен");
     }
   }, [isUpdatedTransportTypeSuccess]);
 
@@ -82,10 +82,10 @@ const UpdateTransportType = () => {
     <>
       <form onSubmit={updateTransportType}>
         <SubHeader
-          title="Transport type"
+          title="Тип транспорта"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

@@ -28,7 +28,7 @@ const UpdateSticker = () => {
   const prevIsUpdatedStickerSuccess = usePrevious(isUpdatedStickerSuccess);
 
   useEffect(() => {
-    document.title = "Sticker";
+    document.title = "Наклейка";
     dispatch(getStickerRequest(id));
   }, []);
 
@@ -41,14 +41,13 @@ const UpdateSticker = () => {
   useEffect(() => {
     if (isUpdatedStickerSuccess && prevIsUpdatedStickerSuccess === false) {
       setIsLoading(false);
-      toast.success("Sticker Updated Successfully");
+      toast.success("Стикер успешно обновлен");
     }
   }, [isUpdatedStickerSuccess]);
 
   useEffect(() => {
     if (isUpdatedStickerError && prevIsUpdatedStickerError === false) {
       setIsLoading(false);
-      toast.error("Something went wrong...");
     }
   }, [isUpdatedStickerError]);
 
@@ -79,10 +78,10 @@ const UpdateSticker = () => {
     <>
       <form onSubmit={updateSticker}>
         <SubHeader
-          title="Sticker"
+          title="Стикер"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Save
+              Сохранить
             </button>
           }
         />

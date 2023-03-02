@@ -41,7 +41,7 @@ const ExteriorColors = () => {
   const [exteriorColorsClone, setExteriorColorsClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Exterior colors - list";
+    document.title = "Цвета кузова - список";
     setIsLoading(true);
     dispatch(getExteriorColorsRequest());
   }, []);
@@ -72,7 +72,7 @@ const ExteriorColors = () => {
       isDeletedExteriorColorSuccess &&
       prevIsDeletedExteriorColorSuccess === false
     ) {
-      toast.success("Exterior Color Deleted Successfully");
+      toast.success("Внешний цвет успешно удален");
       setIsLoading(false);
       setExteriorColorsClone(
         exteriorColorsClone.filter(
@@ -103,12 +103,12 @@ const ExteriorColors = () => {
   return (
     <>
       <SubHeader
-        title="Exterior color"
+        title="Внешний цвет"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/exterior-color">
-              <button className="btn btn-outline-info" title="Add">
-                Add
+              <button className="btn btn-outline-info" title="Добавить">
+                Добавить
               </button>
             </Link>
           </div>
@@ -122,11 +122,10 @@ const ExteriorColors = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Delete Exterior color"
+        title="Удалить цвет кузова"
         message={
           <span>
-            Do you want to delete <b>{selectedExteriorColor.name}</b> exterior
-            color?
+            Вы хотите удалить <b>{selectedExteriorColor.name}</b> цвет кузова?
           </span>
         }
         open={isExteriorColorDeleteModalOpen}

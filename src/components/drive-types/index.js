@@ -37,7 +37,7 @@ const DriveTypes = () => {
   const [driveTypesClone, setDriveTypesClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Drive Types - list";
+    document.title = "Типы дисков - список";
     setIsLoading(true);
     dispatch(getDriveTypesRequest());
   }, []);
@@ -61,7 +61,7 @@ const DriveTypes = () => {
 
   useEffect(() => {
     if (isDeletedDriveTypeSuccess && prevIsDeletedDriveTypeSuccess === false) {
-      toast.success("Drive Type Deleted Successfully");
+      toast.success("Тип диска успешно удален");
       setIsLoading(false);
       setDriveTypesClone(
         driveTypesClone.filter(
@@ -92,12 +92,12 @@ const DriveTypes = () => {
   return (
     <>
       <SubHeader
-        title="Drive Types"
+        title="Типы дисков"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/drive-type">
-              <button className="btn btn-outline-info" title="Add">
-                Add
+              <button className="btn btn-outline-info" title="Добавить">
+                Добавить
               </button>
             </Link>
           </div>
@@ -111,10 +111,10 @@ const DriveTypes = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Delete drive type"
+        title="Удалить тип диска"
         message={
           <span>
-            Do you want to delete <b>{selectedDriveType.name}</b> drive type?
+            Вы хотите удалить <b>{selectedDriveType.name}</b> тип привода?
           </span>
         }
         open={isDriveTypeDeleteModalOpen}
