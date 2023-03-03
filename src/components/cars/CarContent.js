@@ -26,7 +26,21 @@ import { getSeatsRequest } from "../../redux/seats/actions";
 import Select from "react-select";
 import { deleteCarPhotoRequest, getCarRequest } from "../../redux/cars/actions";
 import { toast } from "react-toastify";
-import CancelSvg from "../../assets/images/svgs/cancel";
+import SortableItem from "./SortableItem";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 // eslint-disable-next-line react/display-name
 const CarContent = forwardRef((props, ref) => {
@@ -97,8 +111,17 @@ const CarContent = forwardRef((props, ref) => {
     hwy: null,
     description: null,
     general_photos: null,
+    after_renovation_photos: null,
+    before_renovation_photos: null,
     show_on_page: 0,
   });
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   const [marksOptions, setMarksOptions] = useState([]);
   const [modelsOptions, setModelsOptions] = useState([]);
@@ -140,20 +163,57 @@ const CarContent = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     getFormData: () => {
-      return carData;
+      return selectedCar;
     },
   }));
 
   useEffect(() => {
     if (prevIsGetCarSuccess === false && isGetCarSuccess) {
-      setSelectedCar(car);
+      const carData = structuredClone(car);
+      if (carData.general_photos?.length) {
+        carData.general_photos = carData.general_photos.sort(
+          (a, b) => a.row_index - b.row_index
+        );
+      }
+
+      if (carData.after_renovation_photos?.length) {
+        carData.after_renovation_photos = carData.after_renovation_photos.sort(
+          (a, b) => a.row_index - b.row_index
+        );
+      }
+
+      if (carData.before_renovation_photos?.length) {
+        carData.before_renovation_photos =
+          carData.before_renovation_photos.sort(
+            (a, b) => a.row_index - b.row_index
+          );
+      }
+      setSelectedCar(carData);
     }
   }, [isGetCarSuccess]);
 
   useEffect(() => {
     if (isUpdatedCarSuccess && prevIsUpdatedCarSuccess === false) {
       setIsLoading(false);
-      setSelectedCar(car);
+      const carData = structuredClone(car);
+      if (carData.general_photos?.length > 0) {
+        carData.general_photos = carData.general_photos.sort(
+          (a, b) => a.row_index - b.row_index
+        );
+      }
+      if (carData.after_renovation_photos?.length) {
+        carData.after_renovation_photos = carData.after_renovation_photos.sort(
+          (a, b) => a.row_index - b.row_index
+        );
+      }
+
+      if (carData.before_renovation_photos?.length) {
+        carData.before_renovation_photos =
+          carData.before_renovation_photos.sort(
+            (a, b) => a.row_index - b.row_index
+          );
+      }
+      setSelectedCar(carData);
       toast.success("Car Updated Successfully");
     }
   }, [isUpdatedCarSuccess]);
@@ -368,8 +428,8 @@ const CarContent = forwardRef((props, ref) => {
       switch (selectedImageType) {
       case "general":
         const index = selectedCarCopy.general_photos.findIndex(
-            (item) => item.id === selectedImageId
-          );
+          (item) => item.id === selectedImageId
+        );
         selectedCarCopy.general_photos.splice(index, 1);
         setSelectedCar(selectedCarCopy);
         break;
@@ -379,21 +439,21 @@ const CarContent = forwardRef((props, ref) => {
               (item) => item.id === selectedImageId
             );
         selectedCarCopy.after_renovation_photos.splice(
-            afterRenovationIndex,
-            1
-          );
+          afterRenovationIndex,
+          1
+        );
         setSelectedCar(selectedCarCopy);
         break;
       case "before-renovation":
-          const beforeRenovationIndex =
+        const beforeRenovationIndex =
             selectedCarCopy.after_renovation_photos.findIndex(
               (item) => item.id === selectedImageId
             );
-          selectedCarCopy.before_renovation_photos.splice(
-            beforeRenovationIndex,
-            1
-          );
-          setSelectedCar(selectedCarCopy);
+        selectedCarCopy.before_renovation_photos.splice(
+          beforeRenovationIndex,
+          1
+        );
+        setSelectedCar(selectedCarCopy);
         break;
       }
 
@@ -424,45 +484,45 @@ const CarContent = forwardRef((props, ref) => {
   function loadOptions(type) {
     if (!id) {
       switch (type) {
-        case "marks":
-          dispatch(getMarksRequest());
-          break;
-        case "models":
-          dispatch(getModelsRequest());
-          break;
-        case "engines":
-          dispatch(getEnginesRequest());
-          break;
-        case "transmission":
-          dispatch(getTransmissionsRequest());
-          break;
-        case "fuel-types":
-          dispatch(getFuelTypesRequest());
-          break;
-        case "drive-types":
-          dispatch(getDriveTypesRequest());
-          break;
-        case "transport-types":
-          dispatch(getTransportTypesRequest());
-          break;
-        case "body-styles":
-          dispatch(getBodyStylesRequest());
-          break;
-        case "years":
-          dispatch(getYearsRequest());
-          break;
-        case "interior-colors":
-          dispatch(getInteriorColorsRequest());
-          break;
-        case "exterior-colors":
-          dispatch(getExteriorColorsRequest());
-          break;
-        case "stickers":
-          dispatch(getStickersRequest());
-          break;
-        case "seats":
-          dispatch(getSeatsRequest());
-          break;
+      case "marks":
+        dispatch(getMarksRequest());
+        break;
+      case "models":
+        dispatch(getModelsRequest());
+        break;
+      case "engines":
+        dispatch(getEnginesRequest());
+        break;
+      case "transmission":
+        dispatch(getTransmissionsRequest());
+        break;
+      case "fuel-types":
+        dispatch(getFuelTypesRequest());
+        break;
+      case "drive-types":
+        dispatch(getDriveTypesRequest());
+        break;
+      case "transport-types":
+        dispatch(getTransportTypesRequest());
+        break;
+      case "body-styles":
+        dispatch(getBodyStylesRequest());
+        break;
+      case "years":
+        dispatch(getYearsRequest());
+        break;
+      case "interior-colors":
+        dispatch(getInteriorColorsRequest());
+        break;
+      case "exterior-colors":
+        dispatch(getExteriorColorsRequest());
+        break;
+      case "stickers":
+        dispatch(getStickersRequest());
+        break;
+      case "seats":
+        dispatch(getSeatsRequest());
+        break;
       }
     }
   }
@@ -486,6 +546,27 @@ const CarContent = forwardRef((props, ref) => {
     setSelectedImageType(name);
     dispatch(deleteCarPhotoRequest({ id, name }));
   };
+
+  function handleDragEnd(event, type = "general_photos") {
+    const { active, over } = event;
+
+    if (active && over && active.id !== over.id) {
+      setSelectedCar((prevSelectedCar) => {
+        const oldIndex = prevSelectedCar[type]?.findIndex(
+          (photo) => photo.id === active.id
+        );
+        const newIndex = prevSelectedCar[type]?.findIndex(
+          (photo) => photo.id === over.id
+        );
+        const newItemsArray = arrayMove(
+          prevSelectedCar[type],
+          oldIndex,
+          newIndex
+        );
+        return { ...prevSelectedCar, [type]: newItemsArray };
+      });
+    }
+  }
 
   return (
     <>
@@ -794,7 +875,7 @@ const CarContent = forwardRef((props, ref) => {
             />
           </div>
 
-          <div className="col-12 col-lg-6 mb-3">
+          <div className="col-12 mb-3">
             <label htmlFor="Show on page">Show on page</label>
             <div className="custom-control custom-switch float-right align-middle">
               <input
@@ -812,117 +893,139 @@ const CarContent = forwardRef((props, ref) => {
             </div>
           </div>
 
-          <div>
-            <div className="col-12 col-lg-6 mb-3">
-              <label htmlFor="General Photos">General Photos</label>
-              <input
-                type="file"
-                className="form-control"
-                name="general_photos[]"
-                onChange={(option) => {
-                  handleChange("general_photos", option.target.files);
-                }}
-                multiple
-              />
-            </div>
+          <div className="col-12 mb-3">
+            <label htmlFor="General Photos">General Photos</label>
+            <input
+              type="file"
+              className="form-control"
+              name="general_photos[]"
+              onChange={(option) => {
+                handleChange("general_photos", option.target.files);
+              }}
+              multiple
+            />
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={
+                  Object.keys(selectedCar)?.length > 0
+                    ? selectedCar?.general_photos?.map((photo) => photo.id)
+                    : []
+                }
+                strategy={verticalListSortingStrategy}
+              >
+                {Object.keys(selectedCar)?.length > 0 ? (
+                  <div className="row mt-4">
+                    {selectedCar?.general_photos?.map((item) => (
+                      <SortableItem
+                        key={item.id}
+                        id={item.id}
+                        item={item}
+                        deleteCarPhoto={deleteCarPhoto}
+                        name="general"
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </SortableContext>
+            </DndContext>
+          </div>
 
-            {Object.keys(selectedCar)?.length > 0 ? (
-              <div className="row">
-                {selectedCar?.general_photos?.map((item) => (
-                  <div
-                    className="col-auto position-relative"
-                    onClick={() => deleteCarPhoto(item.id, "general")}
-                    key={item.id}
-                  >
-                    <div className="cancel-button">
-                      <CancelSvg />
-                    </div>
-                    <img
-                      src={item.image}
-                      width={300}
-                      height={300}
-                      alt={item.image}
-                    />
+          <div className="col-12 mb-3">
+            <label htmlFor="After Renovation Photos">
+              After Renovation Photos
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              name="after_renovation_photos[]"
+              onChange={(option) => {
+                handleChange("after_renovation_photos", option.target.files);
+              }}
+              multiple
+            />
+
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={(e) => handleDragEnd(e, "after_renovation_photos")}
+            >
+              <SortableContext
+                items={
+                  Object.keys(selectedCar)?.length > 0
+                    ? selectedCar?.after_renovation_photos?.map(
+                      (photo) => photo.id
+                    )
+                    : []
+                }
+                strategy={verticalListSortingStrategy}
+              >
+                {Object.keys(selectedCar)?.length > 0 ? (
+                  <div className="row mt-4">
+                    {selectedCar?.after_renovation_photos?.map((item) => (
+                      <SortableItem
+                        key={item.id}
+                        id={item.id}
+                        item={item}
+                        deleteCarPhoto={deleteCarPhoto}
+                        name="after-renovation"
+                      />
+                    ))}
                   </div>
-                ))}
-              </div>
-            ) : null}
+                ) : null}
+              </SortableContext>
+            </DndContext>
           </div>
-          <div>
-            <div className="col-12 col-lg-6 mb-3">
-              <label htmlFor="After Renovation Photos">
-                After Renovation Photos
-              </label>
-              <input
-                type="file"
-                className="form-control"
-                name="after_renovation_photos[]"
-                onChange={(option) => {
-                  handleChange("after_renovation_photos", option.target.files);
-                }}
-                multiple
-              />
-            </div>
-            {Object.keys(selectedCar)?.length > 0 ? (
-              <div className="row">
-                {selectedCar?.after_renovation_photos?.map((item) => (
-                  <div
-                    className="col-auto position-relative"
-                    onClick={() => deleteCarPhoto(item.id, "after-renovation")}
-                    key={item.id}
-                  >
-                    <div className="cancel-button">
-                      <CancelSvg />
-                    </div>
-                    <img
-                      src={item.image}
-                      width={300}
-                      height={300}
-                      alt={item.image}
-                    />
+
+          <div className="col-12 mb-3">
+            <label htmlFor="Before Renovation Photos">
+              Before Renovation Photos
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              name="before_renovation_photos[]"
+              onChange={(option) => {
+                handleChange("before_renovation_photos", option.target.files);
+              }}
+              multiple
+            />
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={(e) => handleDragEnd(e, "before_renovation_photos")}
+            >
+              <SortableContext
+                items={
+                  Object.keys(selectedCar)?.length > 0
+                    ? selectedCar?.before_renovation_photos?.map(
+                      (photo) => photo.id
+                    )
+                    : []
+                }
+                strategy={verticalListSortingStrategy}
+              >
+                {Object.keys(selectedCar)?.length > 0 ? (
+                  <div className="row mt-4">
+                    {selectedCar?.before_renovation_photos?.map((item) => (
+                      <SortableItem
+                        key={item.id}
+                        id={item.id}
+                        item={item}
+                        deleteCarPhoto={deleteCarPhoto}
+                        name="before-renovation"
+                      />
+                    ))}
                   </div>
-                ))}
-              </div>
-            ) : null}
+                ) : null}
+              </SortableContext>
+            </DndContext>
           </div>
-          <div>
-            <div className="col-12 col-lg-6 mb-3">
-              <label htmlFor="Before Renovation Photos">
-                Before Renovation Photos
-              </label>
-              <input
-                type="file"
-                className="form-control"
-                name="before_renovation_photos[]"
-                onChange={(option) => {
-                  handleChange("before_renovation_photos", option.target.files);
-                }}
-                multiple
-              />
-            </div>
-            {Object.keys(selectedCar)?.length > 0 ? (
-              <div className="row">
-                {selectedCar?.before_renovation_photos?.map((item) => (
-                  <div
-                    className="col-auto position-relative"
-                    onClick={() => deleteCarPhoto(item.id, "before-renovation")}
-                    key={item.id}
-                  >
-                    <div className="cancel-button">
-                      <CancelSvg />
-                    </div>
-                    <img
-                      src={item.image}
-                      width={300}
-                      height={300}
-                      alt={item.image}
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : null}
-          </div>
-          <div className="col-12 col-lg-6 mb-3">
+
+          <div className="col-12 mb-3">
             <label htmlFor="View 360">Просмотр 360</label>
             <input
               type="file"

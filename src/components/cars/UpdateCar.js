@@ -21,9 +21,83 @@ const UpdateCar = () => {
   const updateCar = (e) => {
     e.preventDefault();
     // setIsLoading(true);
+    let generalActiveId = null;
+    const generalActive = e.target["general-active"];
+    if (generalActive?.length > 0) {
+      generalActive.forEach((item) => {
+        if (item.checked) {
+          generalActiveId = +item.dataset.id;
+        }
+      });
+    }
+
+    let afterActiveId = null;
+    const afterActive = e.target["after-renovation-active"];
+    if (afterActive?.length > 0) {
+      afterActive.forEach((item) => {
+        if (item.checked) {
+          afterActiveId = +item.dataset.id;
+        }
+      });
+    }
+
+    let beforeActiveId = null;
+    const beforeActive = e.target["before-renovation-active"];
+    if (beforeActive?.length > 0) {
+      beforeActive.forEach((item) => {
+        if (item.checked) {
+          beforeActiveId = +item.dataset.id;
+        }
+      });
+    }
+
+    const carData = ref.current?.getFormData();
+    const general_photos = carData.general_photos?.map(({ id }, index) => {
+      return {
+        id,
+        row_index: index,
+        active: generalActiveId === id ? 1 : 0,
+      };
+    });
+    const after_renovation_photos = carData.after_renovation_photos?.map(
+      ({ id }, index) => {
+        return {
+          id,
+          row_index: index,
+          active: afterActiveId === id ? 1 : 0,
+        };
+      }
+    );
+    const before_renovation_photos = carData.before_renovation_photos?.map(
+      ({ id }, index) => {
+        return {
+          id,
+          row_index: index,
+          active: beforeActiveId === id ? 1 : 0,
+        };
+      }
+    );
 
     const data = new FormData(e.target);
+
     data.set("show_on_page", e.target.show_on_page.checked === true ? 1 : 0);
+    if (carData?.general_photos?.length > 0) {
+      data.set("general_photos_ids", JSON.stringify(general_photos));
+    }
+
+    if (carData?.after_renovation_photos?.length > 0) {
+      data.set(
+        "after_renovation_photos_ids",
+        JSON.stringify(after_renovation_photos)
+      );
+    }
+
+    if (carData?.before_renovation_photos?.length > 0) {
+      data.set(
+        "before_renovation_photos_ids",
+        JSON.stringify(before_renovation_photos)
+      );
+    }
 
     dispatch(
       updateCarRequest({
@@ -31,6 +105,10 @@ const UpdateCar = () => {
         data,
       })
     );
+
+    e.target["before_renovation_photos[]"].value = "";
+    e.target["after_renovation_photos[]"].value = "";
+    e.target["general_photos[]"].value = "";
   };
 
   return (

@@ -491,3 +491,14 @@ body {
   right: 20px;
   color: red;
 }
+
+
+.active-radio {
+  position: absolute;
+  right: 82%;
+
+  input[type=radio] {
+    width: 25px;
+    height: 25px;
+  }
+}
