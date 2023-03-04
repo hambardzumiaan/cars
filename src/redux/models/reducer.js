@@ -109,7 +109,8 @@ const reducer = handleActions(
     }),
     [createModelSuccess]: (state, { payload }) => ({
       ...state,
-      newModelId: payload ?? "",
+      newModelId: payload.id ?? "",
+      model: payload.data ?? "",
       isCreatedModelSuccess: true,
       isCreatedModelError: false,
     }),

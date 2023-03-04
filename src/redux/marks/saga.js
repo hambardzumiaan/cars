@@ -72,7 +72,7 @@ function* createMark({ payload }) {
   try {
     const response = yield call(axios.post, "/car/marks", payload);
     if (response.status === 200) {
-      yield put(createMarkSuccess());
+      yield put(createMarkSuccess(response.data));
     }
   } catch (e) {
     yield put(createMarkFailure("e.message"));

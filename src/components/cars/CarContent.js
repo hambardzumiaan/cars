@@ -8,10 +8,13 @@ import React, {
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
-import { getMarksRequest } from "../../redux/marks/actions";
+import { createMarkRequest, getMarksRequest } from "../../redux/marks/actions";
 import usePrevious from "../../utility/hooks/usePrevious";
 import { getYearsRequest } from "../../redux/years/actions";
-import { getModelsRequest } from "../../redux/models/actions";
+import {
+  createModelRequest,
+  getModelsRequest,
+} from "../../redux/models/actions";
 import { getBodyStylesRequest } from "../../redux/bodyStyles/actions";
 import { getEnginesRequest } from "../../redux/engines/actions";
 import { getExteriorColorsRequest } from "../../redux/exteriorColors/actions";
@@ -41,6 +44,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import CreatableSelect from "react-select/creatable";
 
 // eslint-disable-next-line react/display-name
 const CarContent = forwardRef((props, ref) => {
@@ -53,8 +57,11 @@ const CarContent = forwardRef((props, ref) => {
 
   console.log("car", car);
 
-  const { marks, isGetMarksSuccess } = useSelector((state) => state.marks);
-  const { models, isGetModelsSuccess } = useSelector((state) => state.models);
+  const { marks, isGetMarksSuccess, isCreatedMarkSuccess, mark } = useSelector(
+    (state) => state.marks
+  );
+  const { models, isGetModelsSuccess, isCreatedModelSuccess, model } =
+    useSelector((state) => state.models);
   const { engines, isGetEnginesSuccess } = useSelector(
     (state) => state.engines
   );
@@ -154,6 +161,8 @@ const CarContent = forwardRef((props, ref) => {
   const prevIsGetSeatsSuccess = usePrevious(isGetSeatsSuccess);
   const prevIsDeleteCarPhotoSuccess = usePrevious(isDeleteCarPhotoSuccess);
   const prevIsGetCarSuccess = usePrevious(isGetCarSuccess);
+  const prevIsCreatedMarkSuccess = usePrevious(isCreatedMarkSuccess);
+  const prevIsCreatedModelSuccess = usePrevious(isCreatedModelSuccess);
   const prevIsGetInteriorColorsSuccess = usePrevious(
     isGetInteriorColorsSuccess
   );
@@ -225,6 +234,26 @@ const CarContent = forwardRef((props, ref) => {
   }, []);
 
   useEffect(() => {
+    if (isCreatedMarkSuccess && prevIsCreatedMarkSuccess === false) {
+      setSelectedMark({
+        value: mark.id,
+        label: mark.name,
+      });
+      dispatch(getMarksRequest());
+    }
+  }, [isCreatedMarkSuccess]);
+
+  useEffect(() => {
+    if (isCreatedModelSuccess && prevIsCreatedModelSuccess === false) {
+      setSelectedModel({
+        value: model.id,
+        label: model.name,
+      });
+      dispatch(getModelsRequest());
+    }
+  }, [isCreatedModelSuccess]);
+
+  useEffect(() => {
     if (isGetMarksSuccess && prevIsGetMarksSuccess === false) {
       const marksClone = [...marks];
       const data = [];
@@ -234,9 +263,13 @@ const CarContent = forwardRef((props, ref) => {
           value: mark.id,
         });
       });
+      setSelectedMark({
+        label: mark?.name || car?.mark?.name,
+        value: mark?.id || car?.mark?.id,
+      });
       setMarksOptions(data);
     }
-  }, [isGetMarksSuccess]);
+  }, [isGetMarksSuccess, marks]);
 
   useEffect(() => {
     if (
@@ -257,6 +290,12 @@ const CarContent = forwardRef((props, ref) => {
             value: model.id,
           });
         });
+
+      setSelectedModel({
+        label: selectedModel === null ? "" : car?.model?.name,
+        value: selectedModel === null ? "" : car?.model?.id,
+      });
+
       setModelsOptions(data);
     }
   }, [isGetModelsSuccess, selectedMark, car]);
@@ -528,10 +567,11 @@ const CarContent = forwardRef((props, ref) => {
   }
 
   const handleChangeMark = (option) => {
-    console.log("option", option);
-    setSelectedMark(option);
-    setSelectedModel(null);
-    handleChange("car_mark_id", option.value);
+    if (option) {
+      setSelectedMark(option);
+      setSelectedModel(null);
+      handleChange("car_mark_id", option.value);
+    }
   };
 
   const handleChange = (name, value) => {
@@ -568,6 +608,38 @@ const CarContent = forwardRef((props, ref) => {
     }
   }
 
+  const handleCreate = (inputValue, isModel = false) => {
+    const marksClone = [...marks];
+    const modelsClone = [...models];
+
+    if (
+      marksClone.findIndex(
+        (mark) => mark.name.toLowerCase() === inputValue.toLowerCase()
+      ) === -1 &&
+      !isModel
+    ) {
+      setSelectedModel(null);
+      setSelectedMark(null);
+      dispatch(
+        createMarkRequest({
+          name: inputValue,
+        })
+      );
+    } else if (
+      modelsClone.findIndex(
+        (model) => model.name.toLowerCase() === inputValue.toLowerCase()
+      ) === -1
+    ) {
+      setSelectedModel(null);
+      dispatch(
+        createModelRequest({
+          name: inputValue,
+          car_mark_id: selectedMark.value,
+        })
+      );
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -580,30 +652,28 @@ const CarContent = forwardRef((props, ref) => {
         <div className="row align-items-center">
           <div className="col-12 col-lg-6 mb-3">
             <label htmlFor="Marks">Marks</label>
-            <Select
+            <CreatableSelect
               name="car_mark_id"
-              options={marksOptions}
               onMenuOpen={() => loadOptions("marks")}
               onChange={handleChangeMark}
-              defaultValue={marksOptions.filter(
-                (option) => option.value === car?.mark?.id
-              )}
+              onCreateOption={handleCreate}
+              options={marksOptions}
+              value={selectedMark}
             />
           </div>
           <div className="col-12 col-lg-6 mb-3">
             <label htmlFor="Models">Models</label>
-            <Select
+            <CreatableSelect
               name="car_model_id"
-              options={modelsOptions}
               onMenuOpen={() => loadOptions("models")}
-              key={modelsOptions.length}
-              defaultValue={modelsOptions.filter(
-                (option) => option.value === car?.model?.id
-              )}
               onChange={(option) => {
                 setSelectedModel(option);
                 handleChange("car_model_id", option.value);
               }}
+              onCreateOption={(e) => handleCreate(e, true)}
+              key={modelsOptions.length}
+              options={modelsOptions}
+              value={selectedModel}
             />
           </div>
           <div className="col-12 col-lg-6 mb-3">

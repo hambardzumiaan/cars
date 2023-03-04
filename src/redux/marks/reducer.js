@@ -106,8 +106,9 @@ const reducer = handleActions(
       isCreatedMarkSuccess: false,
       isCreatedMarkError: false,
     }),
-    [createMarkSuccess]: (state) => ({
+    [createMarkSuccess]: (state, { payload }) => ({
       ...state,
+      mark: payload || {},
       isCreatedMarkSuccess: true,
       isCreatedMarkError: false,
     }),

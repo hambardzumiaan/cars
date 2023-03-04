@@ -72,7 +72,7 @@ function* createModel({ payload }) {
   try {
     const response = yield call(axios.post, "/car/models", payload);
     if (response.status === 200) {
-      yield put(createModelSuccess(response.data.id));
+      yield put(createModelSuccess(response.data));
     }
   } catch (e) {
     yield put(createModelFailure("e.message"));
