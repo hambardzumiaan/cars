@@ -964,6 +964,13 @@ const CarContent = forwardRef((props, ref) => {
           </div>
 
           <div className="col-12 mb-3">
+            <label htmlFor="Equipment">Equipment</label>
+            <textarea className="w-100" name="equipment">
+              {id ? selectedCar?.equipment : ""}
+            </textarea>
+          </div>
+
+          <div className="col-12 mb-3">
             <label htmlFor="General Photos">General Photos</label>
             <input
               type="file"
