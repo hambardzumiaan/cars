@@ -45,6 +45,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import CreatableSelect from "react-select/creatable";
+import { CKEditor } from "ckeditor4-react";
 
 // eslint-disable-next-line react/display-name
 const CarContent = forwardRef((props, ref) => {
@@ -677,6 +678,20 @@ const CarContent = forwardRef((props, ref) => {
             />
           </div>
           <div className="col-12 col-lg-6 mb-3">
+            <label htmlFor="Years">Years</label>
+            <Select
+              name="car_year_id"
+              options={yearsOptions}
+              onMenuOpen={() => loadOptions("years")}
+              onChange={(option) => {
+                handleChange("car_year_id", option.value);
+              }}
+              defaultValue={yearsOptions.filter(
+                (option) => option.value === car?.year?.id
+              )}
+            />
+          </div>
+          <div className="col-12 col-lg-6 mb-3">
             <label htmlFor="Engines">Engines</label>
             <Select
               name="car_engine_id"
@@ -755,20 +770,6 @@ const CarContent = forwardRef((props, ref) => {
               }}
               defaultValue={bodyStylesOptions.filter(
                 (option) => option.value === car?.bodyStyle?.id
-              )}
-            />
-          </div>
-          <div className="col-12 col-lg-6 mb-3">
-            <label htmlFor="Years">Years</label>
-            <Select
-              name="car_year_id"
-              options={yearsOptions}
-              onMenuOpen={() => loadOptions("years")}
-              onChange={(option) => {
-                handleChange("car_year_id", option.value);
-              }}
-              defaultValue={yearsOptions.filter(
-                (option) => option.value === car?.year?.id
               )}
             />
           </div>
@@ -874,20 +875,6 @@ const CarContent = forwardRef((props, ref) => {
           </div>
 
           <div className="col-12 col-lg-6 mb-3">
-            <label htmlFor="Description">Description</label>
-            <input
-              type="text"
-              className="form-control"
-              name="description"
-              defaultValue={id ? car?.description : ""}
-              onChange={(option) => {
-                handleChange("description", option.target.value);
-              }}
-              key={car?.description}
-            />
-          </div>
-
-          <div className="col-12 col-lg-6 mb-3">
             <label htmlFor="Price">Price</label>
             <input
               type="text"
@@ -961,6 +948,19 @@ const CarContent = forwardRef((props, ref) => {
                 className="custom-control-label"
               ></label>
             </div>
+          </div>
+
+          <div className="col-12 mb-3">
+            <label htmlFor="Description">Description</label>
+            <CKEditor
+              initData={id ? car?.description : ""}
+              onChange={(event) => {
+                const description = event.editor.getData();
+                setSelectedCar((prevState) => {
+                  return { ...prevState, description };
+                });
+              }}
+            />
           </div>
 
           <div className="col-12 mb-3">

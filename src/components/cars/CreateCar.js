@@ -42,7 +42,9 @@ const CreateCar = () => {
   const createCar = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    const carData = ref.current?.getFormData();
     const data = new FormData(e.target);
+    data.set("description", carData?.description);
     data.set("show_on_page", e.target.show_on_page.checked === true ? 1 : 0);
 
     dispatch(createCarRequest(data));

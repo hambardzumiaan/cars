@@ -73,7 +73,6 @@ function* deleteCar({ payload }) {
 }
 
 function* createCar({ payload }) {
-  console.log("payload-----------", payload);
   try {
     const response = yield call(axios.post, "/cars", payload);
     if (response.status === 200) {
@@ -85,7 +84,6 @@ function* createCar({ payload }) {
 }
 
 function* deleteCarPhoto({ payload }) {
-  console.log("payload", payload);
   try {
     const response = yield call(axios.post, `/delete/image/${payload.id}`, {
       name: payload.name,

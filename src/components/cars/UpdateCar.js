@@ -79,7 +79,7 @@ const UpdateCar = () => {
     );
 
     const data = new FormData(e.target);
-
+    data.set("description", carData.description);
     data.set("show_on_page", e.target.show_on_page.checked === true ? 1 : 0);
     if (carData?.general_photos?.length > 0) {
       data.set("general_photos_ids", JSON.stringify(general_photos));
