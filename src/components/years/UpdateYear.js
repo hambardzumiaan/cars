@@ -27,7 +27,7 @@ const UpdateYear = () => {
   const prevIsUpdatedYearError = usePrevious(isUpdatedYearError);
 
   useEffect(() => {
-    document.title = "Год";
+    document.title = "Year";
     dispatch(getYearRequest(id));
   }, []);
 
@@ -49,7 +49,7 @@ const UpdateYear = () => {
   useEffect(() => {
     if (isUpdatedYearSuccess && prevIsUpdatedYearSuccess === false) {
       setIsLoading(false);
-      toast.success("Год успешно обновлен");
+      toast.success("Year updated successfully");
     }
   }, [isUpdatedYearSuccess]);
 
@@ -72,10 +72,10 @@ const UpdateYear = () => {
     <>
       <form onSubmit={updateYear}>
         <SubHeader
-          title="Год"
+          title="Year"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

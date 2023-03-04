@@ -33,7 +33,7 @@ const Marks = () => {
   const [marksClone, setMarksClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Марки - список";
+    document.title = "Marks - list";
     setIsLoading(true);
     dispatch(getMarksRequest());
   }, []);
@@ -57,7 +57,7 @@ const Marks = () => {
 
   useEffect(() => {
     if (isDeletedMarkSuccess && prevIsDeletedMarkSuccess === false) {
-      toast.success("Марк автомобиля успешно удалена");
+      toast.success("Mark deleted successfully");
       setIsLoading(false);
       setMarksClone(marksClone.filter((mark) => mark.id !== selectedMark.id));
     }
@@ -84,12 +84,12 @@ const Marks = () => {
   return (
     <>
       <SubHeader
-        title="Марки"
+        title="Marks"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/mark">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -103,10 +103,10 @@ const Marks = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить марку"
+        title="Delete mark"
         message={
           <span>
-            Вы хотите удалить <b>{selectedMark.name}</b> марку?
+            Do you want to delete <b>{selectedMark.name}</b> mark?
           </span>
         }
         open={isModelDeleteModalOpen}

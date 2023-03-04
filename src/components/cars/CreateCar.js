@@ -57,7 +57,7 @@ const CreateCar = () => {
           title="Car"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

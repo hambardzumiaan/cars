@@ -34,7 +34,7 @@ const UpdateTransmission = () => {
   );
 
   useEffect(() => {
-    document.title = "Передача инфекции";
+    document.title = "Transmission";
     dispatch(getTransmissionRequest(id));
   }, []);
 
@@ -59,7 +59,7 @@ const UpdateTransmission = () => {
       prevIsUpdatedTransmissionSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Передача успешно обновлена");
+      toast.success("Transmission updated successfully");
     }
   }, [isUpdatedTransmissionSuccess]);
 
@@ -82,10 +82,10 @@ const UpdateTransmission = () => {
     <>
       <form onSubmit={updateTransmission}>
         <SubHeader
-          title="Передача инфекции"
+          title="Transmission"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

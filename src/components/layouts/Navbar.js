@@ -30,7 +30,7 @@ const Navbar = () => {
           <ul className="nav flex-column">
             <li className="nav-item pt-3">
               <span className="font-monospace nav-link text-white-50">
-                Инфо
+                Info
               </span>
             </li>
             <li
@@ -38,12 +38,8 @@ const Navbar = () => {
                 url.includes("/years") ? "bg-primary" : ""
               }`}
             >
-              <Link
-                className="nav-link text-white"
-                to="/years"
-                title="Год выпуска"
-              >
-                <span className="menu-link-text pl-2">Год выпуска</span>
+              <Link className="nav-link text-white" to="/years" title="Years">
+                <span className="menu-link-text pl-2">Years</span>
               </Link>
             </li>
             <li
@@ -51,12 +47,8 @@ const Navbar = () => {
                 url.includes("/marks") ? "bg-primary" : ""
               }`}
             >
-              <Link
-                className="nav-link text-white"
-                to="/marks"
-                title="Марка авто"
-              >
-                <span className="menu-link-text pl-2">Марка авто</span>
+              <Link className="nav-link text-white" to="/marks" title="Marks">
+                <span className="menu-link-text pl-2">Marks</span>
               </Link>
             </li>
             <li
@@ -64,8 +56,8 @@ const Navbar = () => {
                 url.includes("/cars") ? "bg-primary" : ""
               }`}
             >
-              <Link className="nav-link text-white" to="/cars" title="Машины">
-                <span className="menu-link-text pl-2">Машины</span>
+              <Link className="nav-link text-white" to="/cars" title="Cars">
+                <span className="menu-link-text pl-2">Cars</span>
               </Link>
             </li>
             <li
@@ -73,12 +65,8 @@ const Navbar = () => {
                 url.includes("/models") ? "bg-primary" : ""
               }`}
             >
-              <Link
-                className="nav-link text-white"
-                to="/models"
-                title="Модель авто"
-              >
-                <span className="menu-link-text pl-2">Модель авто</span>
+              <Link className="nav-link text-white" to="/models" title="Models">
+                <span className="menu-link-text pl-2">Models</span>
               </Link>
             </li>
             <li
@@ -86,8 +74,8 @@ const Navbar = () => {
                 url.includes("/seats") ? "bg-primary" : ""
               }`}
             >
-              <Link className="nav-link text-white" to="/seats" title="Сиденья">
-                <span className="menu-link-text pl-2">Сиденья</span>
+              <Link className="nav-link text-white" to="/seats" title="Seats">
+                <span className="menu-link-text pl-2">Seats</span>
               </Link>
             </li>
             <li
@@ -98,9 +86,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/transmissions"
-                title="Коробка передач"
+                title="Transmissions"
               >
-                <span className="menu-link-text pl-2">Коробка передач</span>
+                <span className="menu-link-text pl-2">Transmissions</span>
               </Link>
             </li>
             <li
@@ -111,9 +99,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/engines"
-                title="Двигатель"
+                title="Engines"
               >
-                <span className="menu-link-text pl-2">Двигатель</span>
+                <span className="menu-link-text pl-2">Engines</span>
               </Link>
             </li>
             <li
@@ -124,9 +112,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/body-styles"
-                title="Тип кузова"
+                title="Body styles"
               >
-                <span className="menu-link-text pl-2">Тип кузова</span>
+                <span className="menu-link-text pl-2">Body styles</span>
               </Link>
             </li>
             <li
@@ -137,9 +125,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/drive-types"
-                title="Типы дисков"
+                title="Drive types"
               >
-                <span className="menu-link-text pl-2">Типы дисков</span>
+                <span className="menu-link-text pl-2">Drive types</span>
               </Link>
             </li>
             <li
@@ -150,9 +138,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/fuel-types"
-                title="Тип топлива"
+                title="Fuel types"
               >
-                <span className="menu-link-text pl-2">Тип топлива</span>
+                <span className="menu-link-text pl-2">Fuel types</span>
               </Link>
             </li>
             <li
@@ -163,9 +151,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/transport-types"
-                title="Тип транспорта"
+                title="Transport types"
               >
-                <span className="menu-link-text pl-2">Тип транспорта</span>
+                <span className="menu-link-text pl-2">Transport types</span>
               </Link>
             </li>
             <li
@@ -176,9 +164,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/interior-colors"
-                title="Цвет салона"
+                title="Interior colors"
               >
-                <span className="menu-link-text pl-2">Цвет салона</span>
+                <span className="menu-link-text pl-2">Interior colors</span>
               </Link>
             </li>
             <li
@@ -189,9 +177,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/exterior-colors"
-                title="Цвет экстерьера"
+                title="Exterior colors"
               >
-                <span className="menu-link-text pl-2">Цвет экстерьера</span>
+                <span className="menu-link-text pl-2">Exterior colors</span>
               </Link>
             </li>
             <li
@@ -202,9 +190,9 @@ const Navbar = () => {
               <Link
                 className="nav-link text-white"
                 to="/stickers"
-                title="Наклейки"
+                title="Stickers"
               >
-                <span className="menu-link-text pl-2">Наклейки</span>
+                <span className="menu-link-text pl-2">Stickers</span>
               </Link>
             </li>
           </ul>

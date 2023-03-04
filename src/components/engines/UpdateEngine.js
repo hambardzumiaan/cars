@@ -30,7 +30,7 @@ const UpdateEngine = () => {
   const prevIsUpdatedEngineError = usePrevious(isUpdatedEngineError);
 
   useEffect(() => {
-    document.title = "Двигатель";
+    document.title = "Engine";
     dispatch(getEngineRequest(id));
   }, []);
 
@@ -52,7 +52,7 @@ const UpdateEngine = () => {
   useEffect(() => {
     if (isUpdatedEngineSuccess && prevIsUpdatedEngineSuccess === false) {
       setIsLoading(false);
-      toast.success("Двигатель успешно обновлен");
+      toast.success("Engine updated successfully");
     }
   }, [isUpdatedEngineSuccess]);
 
@@ -75,10 +75,10 @@ const UpdateEngine = () => {
     <>
       <form onSubmit={updateEngine}>
         <SubHeader
-          title="Двигатель"
+          title="Engine"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

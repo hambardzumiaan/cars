@@ -30,7 +30,7 @@ const UpdateBodyStyle = () => {
   const prevIsUpdatedBodyStyleError = usePrevious(isUpdatedBodyStyleError);
 
   useEffect(() => {
-    document.title = "Тип кузова";
+    document.title = "Body style";
     dispatch(getBodyStyleRequest(id));
   }, []);
 
@@ -47,7 +47,7 @@ const UpdateBodyStyle = () => {
   useEffect(() => {
     if (isUpdatedBodyStyleSuccess && prevIsUpdatedBodyStyleSuccess === false) {
       setIsLoading(false);
-      toast.success("Тип кузова успешно обновлен");
+      toast.success("Body style updated successfully");
     }
   }, [isUpdatedBodyStyleSuccess]);
 
@@ -70,10 +70,10 @@ const UpdateBodyStyle = () => {
     <>
       <form onSubmit={updateBodyStyle}>
         <SubHeader
-          title="Тип кузова"
+          title="Body style"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

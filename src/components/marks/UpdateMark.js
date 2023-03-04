@@ -28,7 +28,7 @@ const UpdateMark = () => {
   const prevIsUpdatedMarkError = usePrevious(isUpdatedMarkError);
 
   useEffect(() => {
-    document.title = "Марк";
+    document.title = "Mark";
     dispatch(getMarkRequest(id));
   }, []);
 
@@ -47,7 +47,7 @@ const UpdateMark = () => {
   useEffect(() => {
     if (isUpdatedMarkSuccess && prevIsUpdatedMarkSuccess === false) {
       setIsLoading(false);
-      toast.success("Марка успешно обновлена");
+      toast.success("Mark updated successfully");
     }
   }, [isUpdatedMarkSuccess]);
 
@@ -76,10 +76,10 @@ const UpdateMark = () => {
     <>
       <form onSubmit={updateMark}>
         <SubHeader
-          title="Марк"
+          title="Mark"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

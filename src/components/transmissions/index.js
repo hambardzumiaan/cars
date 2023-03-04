@@ -41,7 +41,7 @@ const Transmissions = () => {
   const [transmissionsClone, setTransmissionsClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Трансмиссии - список";
+    document.title = "Transmissions - list";
     setIsLoading(true);
     dispatch(getTransmissionsRequest());
   }, []);
@@ -73,7 +73,7 @@ const Transmissions = () => {
       isDeletedTransmissionSuccess &&
       prevIsDeletedTransmissionSuccess === false
     ) {
-      toast.success("Передача успешно удалена");
+      toast.success("Transmission deleted successfully");
       setIsLoading(false);
       setTransmissionsClone(
         transmissionsClone.filter(
@@ -104,12 +104,12 @@ const Transmissions = () => {
   return (
     <>
       <SubHeader
-        title="Трансмиссии"
+        title="Transmission"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/transmission">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -123,10 +123,11 @@ const Transmissions = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить передачу"
+        title="Delete transmission"
         message={
           <span>
-            Вы хотите удалить <b>{selectedTransmission.name}</b> передачу?
+            Do you want to delete <b>{selectedTransmission.name}</b>{" "}
+            transmission?
           </span>
         }
         open={isTransmissionDeleteModalOpen}

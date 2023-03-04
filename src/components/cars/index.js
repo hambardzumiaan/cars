@@ -87,8 +87,8 @@ const Cars = () => {
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/car">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>

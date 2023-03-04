@@ -21,13 +21,13 @@ const CreateBodyStyle = () => {
   const prevIsCreatedBodyStyleError = usePrevious(isCreatedBodyStyleError);
 
   useEffect(() => {
-    document.title = "Стиль кузова - создать";
+    document.title = "Body style - create";
   }, []);
 
   useEffect(() => {
     if (isCreatedBodyStyleSuccess && prevIsCreatedBodyStyleSuccess === false) {
       setIsLoading(false);
-      toast.success("Тип кузова успешно создан");
+      toast.success("Body style created successfully.");
       navigate("/body-styles");
     }
   }, [isCreatedBodyStyleSuccess]);
@@ -54,10 +54,10 @@ const CreateBodyStyle = () => {
     <>
       <form onSubmit={createBodyStyle}>
         <SubHeader
-          title="Тип кузова"
+          title="Body style"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

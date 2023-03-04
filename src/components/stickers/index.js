@@ -9,6 +9,7 @@ import usePrevious from "../../utility/hooks/usePrevious";
 import { MainContext } from "../../context/contexts";
 import DeleteConfirm from "../../components/modals/Delete";
 import SubHeader from "../../components/SubHeader";
+import { toast } from "react-toastify";
 
 const Stickers = () => {
   const { setIsLoading } = useContext(MainContext);
@@ -35,7 +36,7 @@ const Stickers = () => {
   const [stickersClone, setStickersClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Наклейки - список";
+    document.title = "Stickers - list";
     setIsLoading(true);
     dispatch(getStickersRequest());
   }, []);
@@ -60,6 +61,7 @@ const Stickers = () => {
   useEffect(() => {
     if (isDeletedStickerSuccess && prevIsDeletedStickerSuccess === false) {
       setIsLoading(false);
+      toast.success("Sticker deleted successfully");
       setStickersClone(
         stickersClone.filter((sticker) => sticker.id !== selectedSticker.id)
       );
@@ -87,12 +89,12 @@ const Stickers = () => {
   return (
     <>
       <SubHeader
-        title="Наклейки"
+        title="Stickers"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/sticker">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -102,8 +104,8 @@ const Stickers = () => {
         <table className="border table table-light table-striped">
           <thead className="table-light">
             <tr>
-              <th>Текст</th>
-              <th>Цвет</th>
+              <th>Text</th>
+              <th>Color</th>
               <th className="function-col text-right" />
             </tr>
           </thead>
@@ -120,7 +122,7 @@ const Stickers = () => {
                           className="btn btn-outline-dark mr-3"
                           type="button"
                         >
-                          Редактировать
+                          Edit
                         </button>
                       </Link>
                       <button
@@ -128,7 +130,7 @@ const Stickers = () => {
                         type="button"
                         onClick={() => handleShowDeleteModal(sticker)}
                       >
-                        Удалить
+                        Delete
                       </button>
                     </div>
                   </td>
@@ -141,10 +143,10 @@ const Stickers = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить стикер"
+        title="Delete sticker"
         message={
           <span>
-            Вы хотите удалить <b>{selectedSticker.name}</b> стикер?
+            Do you want to delete <b>{selectedSticker.name}</b> sticker?
           </span>
         }
         open={isStickerDeleteModalOpen}

@@ -24,7 +24,7 @@ const CreateInteriorColor = () => {
   );
 
   useEffect(() => {
-    document.title = "Цвет салона - создать";
+    document.title = "Interior color - create";
   }, []);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const CreateInteriorColor = () => {
       prevIsCreatedInteriorColorSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Цвет салона создан успешно");
+      toast.success("Interior color created successfully");
       navigate("/interior-colors");
     }
   }, [isCreatedInteriorColorSuccess]);
@@ -63,10 +63,10 @@ const CreateInteriorColor = () => {
     <>
       <form onSubmit={createInteriorColor}>
         <SubHeader
-          title="Цвет салона"
+          title="Interior color"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

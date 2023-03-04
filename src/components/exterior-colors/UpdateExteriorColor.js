@@ -34,7 +34,7 @@ const UpdateExteriorColor = () => {
   );
 
   useEffect(() => {
-    document.title = "Внешний цвет";
+    document.title = "Exterior color";
     dispatch(getExteriorColorRequest(id));
   }, []);
 
@@ -59,7 +59,7 @@ const UpdateExteriorColor = () => {
       prevIsUpdatedExteriorColorSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Внешний цвет успешно обновлен");
+      toast.success("Exterior color updated successfully");
     }
   }, [isUpdatedExteriorColorSuccess]);
 
@@ -82,10 +82,10 @@ const UpdateExteriorColor = () => {
     <>
       <form onSubmit={updateExteriorColor}>
         <SubHeader
-          title="Внешний цвет"
+          title="Exterior color"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

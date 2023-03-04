@@ -33,7 +33,7 @@ const Years = () => {
   const [yearsClone, setYearsClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Годы - список";
+    document.title = "Years - list";
     setIsLoading(true);
     dispatch(getYearsRequest());
   }, []);
@@ -57,7 +57,7 @@ const Years = () => {
 
   useEffect(() => {
     if (isDeletedYearSuccess && prevIsDeletedYearSuccess === false) {
-      toast.success("Год успешно удален");
+      toast.success("Year deleted successfully");
       setIsLoading(false);
       setYearsClone(yearsClone.filter((year) => year.id !== selectedYear.id));
     }
@@ -84,12 +84,12 @@ const Years = () => {
   return (
     <>
       <SubHeader
-        title="Годы"
+        title="Years"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/year">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -104,10 +104,10 @@ const Years = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить год"
+        title="Delete year"
         message={
           <span>
-            Вы хотите удалить <b>{selectedYear.year}</b> год?
+            Do you want to delete <b>{selectedYear.year}</b> year?
           </span>
         }
         open={isYearDeleteModalOpen}

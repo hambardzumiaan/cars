@@ -10,7 +10,7 @@ const StickerContent = ({ sticker }) => {
       <div className="row align-items-center">
         <div className="col-6 col-lg">
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label>Текст</label>
+          <label>Text</label>
           <input
             type="text"
             className="form-control"
@@ -22,7 +22,7 @@ const StickerContent = ({ sticker }) => {
         </div>
         <div className="col-6 col-lg">
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label>Цвет</label>
+          <label>Color</label>
           <input
             type="text"
             className="form-control"

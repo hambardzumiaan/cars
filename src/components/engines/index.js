@@ -36,7 +36,7 @@ const Engines = () => {
   const [enginesClone, setEnginesClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Двигатели";
+    document.title = "Engines";
     setIsLoading(true);
     dispatch(getEnginesRequest());
   }, []);
@@ -60,7 +60,7 @@ const Engines = () => {
 
   useEffect(() => {
     if (isDeletedEngineSuccess && prevIsDeletedEngineSuccess === false) {
-      toast.success("Двигатель успешно удален");
+      toast.success("Engine deleted successfully");
       setIsLoading(false);
       setEnginesClone(
         enginesClone.filter((engine) => engine.id !== selectedEngine.id)
@@ -89,12 +89,12 @@ const Engines = () => {
   return (
     <>
       <SubHeader
-        title="Двигатели"
+        title="Engines"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/engine">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -108,10 +108,10 @@ const Engines = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить двигатель"
+        title="Delete engine"
         message={
           <span>
-            Вы хотите удалить <b>{selectedEngine.name}</b> двигатель?
+            Do you want to delete <b>{selectedEngine.name}</b> engine?
           </span>
         }
         open={isEngineDeleteModalOpen}

@@ -33,7 +33,7 @@ const Seats = () => {
   const [seatsClone, setSeatsClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Места - список";
+    document.title = "Seats - list";
     setIsLoading(true);
     dispatch(getSeatsRequest());
   }, []);
@@ -57,7 +57,7 @@ const Seats = () => {
 
   useEffect(() => {
     if (isDeletedSeatSuccess && prevIsDeletedSeatSuccess === false) {
-      toast.success("Место успешно удалено");
+      toast.success("Seat deleted successfully");
       setIsLoading(false);
       setSeatsClone(seatsClone.filter((seat) => seat.id !== selectedSeat.id));
     }
@@ -84,12 +84,12 @@ const Seats = () => {
   return (
     <>
       <SubHeader
-        title="Сиденья"
+        title="Seats"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/seat">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -103,10 +103,10 @@ const Seats = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить сиденье"
+        title="Delete seat"
         message={
           <span>
-            Вы хотите удалить <b>{selectedSeat.name}</b> сиденье?
+            Do you want to delete <b>{selectedSeat.name}</b> seat?
           </span>
         }
         open={isSeatDeleteModalOpen}

@@ -34,7 +34,7 @@ const UpdateInteriorColor = () => {
   );
 
   useEffect(() => {
-    document.title = "Цвет салона";
+    document.title = "Interior color";
     dispatch(getInteriorColorRequest(id));
   }, []);
 
@@ -59,7 +59,7 @@ const UpdateInteriorColor = () => {
       prevIsUpdatedInteriorColorSuccess === false
     ) {
       setIsLoading(false);
-      toast.success("Цвет салона успешно обновлен");
+      toast.success("Interior color updated successfully");
     }
   }, [isUpdatedInteriorColorSuccess]);
 
@@ -82,10 +82,10 @@ const UpdateInteriorColor = () => {
     <>
       <form onSubmit={updateInteriorColor}>
         <SubHeader
-          title="Цвет салона"
+          title="Interior color"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

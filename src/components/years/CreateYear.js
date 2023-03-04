@@ -21,13 +21,13 @@ const CreateYear = () => {
   const prevIsCreatedYearError = usePrevious(isCreatedYearError);
 
   useEffect(() => {
-    document.title = "Год - создать";
+    document.title = "Year - create";
   }, []);
 
   useEffect(() => {
     if (isCreatedYearSuccess && prevIsCreatedYearSuccess === false) {
       setIsLoading(false);
-      toast.success("Год создания успешно");
+      toast.success("Year created successfully");
       navigate("/years");
     }
   }, [isCreatedYearSuccess]);
@@ -54,10 +54,10 @@ const CreateYear = () => {
     <>
       <form onSubmit={createYear}>
         <SubHeader
-          title="Год"
+          title="Year"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

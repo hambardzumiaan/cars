@@ -37,7 +37,7 @@ const FuelTypes = () => {
   const [fuelTypesClone, setFuelTypesClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Виды топлива - список";
+    document.title = "Fuel types - list";
     setIsLoading(true);
     dispatch(getFuelTypesRequest());
   }, []);
@@ -61,7 +61,7 @@ const FuelTypes = () => {
 
   useEffect(() => {
     if (isDeletedFuelTypeSuccess && prevIsDeletedFuelTypeSuccess === false) {
-      toast.success("Тип топлива успешно удален");
+      toast.success("Fuel type deleted successfully");
       setIsLoading(false);
       setFuelTypesClone(
         fuelTypesClone.filter((fuelType) => fuelType.id !== selectedFuelType.id)
@@ -90,12 +90,12 @@ const FuelTypes = () => {
   return (
     <>
       <SubHeader
-        title="Типы топлива"
+        title="Fuel types"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/fuel-type">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -109,10 +109,10 @@ const FuelTypes = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить тип топлива"
+        title="Delete fuel type"
         message={
           <span>
-            Вы хотите удалить <b>{selectedFuelType.name}</b> тип топлива?
+            Do you want to delete <b>{selectedFuelType.name}</b> fuel type?
           </span>
         }
         open={isFuelTypeDeleteModalOpen}

@@ -21,12 +21,12 @@ const CreateSticker = () => {
   const prevIsCreatedStickerError = usePrevious(isCreatedStickerError);
 
   useEffect(() => {
-    document.title = "Наклейка - создать";
+    document.title = "Sticker - create";
   }, []);
 
   useEffect(() => {
     if (isCreatedStickerSuccess && prevIsCreatedStickerSuccess === false) {
-      toast.success("Стикер успешно создан");
+      toast.success("Sticker created successfully");
       setIsLoading(false);
       navigate("/stickers");
     }
@@ -56,10 +56,10 @@ const CreateSticker = () => {
     <>
       <form onSubmit={createSticker}>
         <SubHeader
-          title="Наклейка"
+          title="Sticker"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

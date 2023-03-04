@@ -43,7 +43,7 @@ const TransportTypes = () => {
   const [transportTypesClone, setTransportTypesClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Тип транспорта";
+    document.title = "Types";
     setIsLoading(true);
     dispatch(getTransportTypesRequest());
   }, []);
@@ -78,7 +78,7 @@ const TransportTypes = () => {
       isDeletedTransportTypeSuccess &&
       prevIsDeletedTransportTypeSuccess === false
     ) {
-      toast.success("Тип транспорта успешно удален");
+      toast.success("Type deleted successfully");
       setIsLoading(false);
       setTransportTypesClone(
         transportTypesClone.filter(
@@ -109,12 +109,12 @@ const TransportTypes = () => {
   return (
     <>
       <SubHeader
-        title="Виды транспорта"
+        title="Types"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/transport-type">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -128,11 +128,10 @@ const TransportTypes = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить тип транспорта"
+        title="Delete type"
         message={
           <span>
-            Вы хотите удалить <b>{selectedTransportType.name}</b> тип
-            транспорта?
+            Do you want to delete <b>{selectedTransportType.name}</b> type?
           </span>
         }
         open={isTransportTypeDeleteModalOpen}

@@ -47,7 +47,7 @@ const Header = ({ isLoading }) => {
             ? "navbar-brand"
             : "col-auto ml-auto header-logo-link-sidebar"
         } p-2 mr-0 p-0 pl-1`}
-        to="/dashboard"
+        to="/cars"
       >
         <span className={`${!isMobile ? "header-logo-sidebar" : ""}`}>
           <Logo height="25" />
@@ -64,7 +64,7 @@ const Header = ({ isLoading }) => {
             data-toggle="dropdown"
             aria-expanded="false"
           >
-            <span className="mr-1">Настройки</span>
+            <span className="mr-1">Settings</span>
           </button>
           <div
             className={`dropdown-menu dropdown-menu-md-right position-absolute ${
@@ -77,7 +77,7 @@ const Header = ({ isLoading }) => {
               type="button"
               onClick={onHandleLogout}
             >
-              Выйти
+              Sign out
             </button>
           </div>
         </li>

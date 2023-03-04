@@ -41,7 +41,7 @@ const InteriorColors = () => {
   const [interiorColorsClone, setInteriorColorsClone] = useState([]);
 
   useEffect(() => {
-    document.title = "Цвета салона - список";
+    document.title = "Interior color - list";
     setIsLoading(true);
     dispatch(getInteriorColorsRequest());
   }, []);
@@ -72,7 +72,7 @@ const InteriorColors = () => {
       isDeletedInteriorColorSuccess &&
       prevIsDeletedInteriorColorSuccess === false
     ) {
-      toast.success("Цвет салона успешно удален");
+      toast.success("Interior color deleted successfully");
       setIsLoading(false);
       setInteriorColorsClone(
         interiorColorsClone.filter(
@@ -103,12 +103,12 @@ const InteriorColors = () => {
   return (
     <>
       <SubHeader
-        title="Цвет салона"
+        title="Interior color"
         actions={
           <div className="mb-3 mt-2 text-right">
             <Link to="/interior-color">
-              <button className="btn btn-outline-info" title="Добавить">
-                Добавить
+              <button className="btn btn-outline-info" title="Add">
+                Add
               </button>
             </Link>
           </div>
@@ -122,10 +122,11 @@ const InteriorColors = () => {
       <DeleteConfirm
         handleClose={handleClose}
         handleConfirm={handleConfirm}
-        title="Удалить цвет салона"
+        title="Delete interior color"
         message={
           <span>
-            Вы хотите удалить <b>{selectedInteriorColor.name}</b> цвет салона?
+            Do you want to delete <b>{selectedInteriorColor.name}</b> interior
+            color?
           </span>
         }
         open={isInteriorColorDeleteModalOpen}

@@ -27,7 +27,7 @@ const UpdateSeat = () => {
   const prevIsUpdatedSeatError = usePrevious(isUpdatedSeatError);
 
   useEffect(() => {
-    document.title = "Сиденье";
+    document.title = "Seat";
     dispatch(getSeatRequest(id));
   }, []);
 
@@ -49,7 +49,7 @@ const UpdateSeat = () => {
   useEffect(() => {
     if (isUpdatedSeatSuccess && prevIsUpdatedSeatSuccess === false) {
       setIsLoading(false);
-      toast.success("Сиденье успешно обновлено");
+      toast.success("Seat updated successfully");
     }
   }, [isUpdatedSeatSuccess]);
 
@@ -72,10 +72,10 @@ const UpdateSeat = () => {
     <>
       <form onSubmit={updateSeat}>
         <SubHeader
-          title="Сиденье"
+          title="Seat"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />

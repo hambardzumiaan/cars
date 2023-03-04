@@ -28,7 +28,7 @@ const UpdateFuelType = () => {
   const prevIsUpdatedFuelTypeError = usePrevious(isUpdatedFuelTypeError);
 
   useEffect(() => {
-    document.title = "Тип топлива";
+    document.title = "Fuel type";
     dispatch(getFuelTypeRequest(id));
   }, []);
 
@@ -50,7 +50,7 @@ const UpdateFuelType = () => {
   useEffect(() => {
     if (isUpdatedFuelTypeSuccess && prevIsUpdatedFuelTypeSuccess === false) {
       setIsLoading(false);
-      toast.success("Тип топлива успешно обновлен");
+      toast.success("Fuel type updated successfully");
     }
   }, [isUpdatedFuelTypeSuccess]);
 
@@ -73,10 +73,10 @@ const UpdateFuelType = () => {
     <>
       <form onSubmit={updateFuelType}>
         <SubHeader
-          title="Тип топлива"
+          title="Fuel type"
           actions={
             <button className="btn btn-outline-info mr-2" type="submit">
-              Сохранить
+              Save
             </button>
           }
         />
