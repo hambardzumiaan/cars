@@ -147,6 +147,7 @@ const CarContent = forwardRef((props, ref) => {
   const [selectedMark, setSelectedMark] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedImageId, setSelectedImageId] = useState(null);
+  const [description, setDescription] = useState("");
   const [selectedImageType, setSelectedImageType] = useState(null);
 
   const prevIsGetMarksSuccess = usePrevious(isGetMarksSuccess);
@@ -175,6 +176,9 @@ const CarContent = forwardRef((props, ref) => {
     getFormData: () => {
       return selectedCar;
     },
+    getDescription: () => {
+      return description;
+    },
   }));
 
   useEffect(() => {
@@ -199,6 +203,10 @@ const CarContent = forwardRef((props, ref) => {
           );
       }
       setSelectedCar(carData);
+      setSelectedModel({
+        value: carData?.model?.id,
+        label: carData?.model?.name,
+      });
     }
   }, [isGetCarSuccess]);
 
@@ -235,24 +243,41 @@ const CarContent = forwardRef((props, ref) => {
   }, []);
 
   useEffect(() => {
-    if (isCreatedMarkSuccess && prevIsCreatedMarkSuccess === false) {
+    if (Object.keys(mark).length > 0 && isCreatedMarkSuccess) {
+      setMarksOptions((prevState) => {
+        return [
+          ...prevState,
+          {
+            value: mark.id,
+            label: mark.name,
+          },
+        ];
+      });
+
       setSelectedMark({
         value: mark.id,
         label: mark.name,
       });
-      dispatch(getMarksRequest());
     }
-  }, [isCreatedMarkSuccess]);
+  }, [mark, isCreatedMarkSuccess]);
 
   useEffect(() => {
-    if (isCreatedModelSuccess && prevIsCreatedModelSuccess === false) {
+    if (Object.keys(model).length > 0 && isCreatedModelSuccess) {
+      setModelsOptions((prevState) => {
+        return [
+          ...prevState,
+          {
+            value: model.id,
+            label: model.name,
+          },
+        ];
+      });
       setSelectedModel({
         value: model.id,
         label: model.name,
       });
-      dispatch(getModelsRequest());
     }
-  }, [isCreatedModelSuccess]);
+  }, [model, isCreatedModelSuccess]);
 
   useEffect(() => {
     if (isGetMarksSuccess && prevIsGetMarksSuccess === false) {
@@ -265,8 +290,8 @@ const CarContent = forwardRef((props, ref) => {
         });
       });
       setSelectedMark({
-        label: mark?.name || car?.mark?.name,
-        value: mark?.id || car?.mark?.id,
+        label: car?.mark?.name,
+        value: car?.mark?.id,
       });
       setMarksOptions(data);
     }
@@ -292,14 +317,9 @@ const CarContent = forwardRef((props, ref) => {
           });
         });
 
-      setSelectedModel({
-        label: selectedModel === null ? "" : car?.model?.name,
-        value: selectedModel === null ? "" : car?.model?.id,
-      });
-
       setModelsOptions(data);
     }
-  }, [isGetModelsSuccess, selectedMark, car]);
+  }, [isGetModelsSuccess, car, selectedMark]);
 
   useEffect(() => {
     if (isGetEnginesSuccess && prevIsGetEnginesSuccess === false) {
@@ -619,8 +639,6 @@ const CarContent = forwardRef((props, ref) => {
       ) === -1 &&
       !isModel
     ) {
-      setSelectedModel(null);
-      setSelectedMark(null);
       dispatch(
         createMarkRequest({
           name: inputValue,
@@ -631,7 +649,6 @@ const CarContent = forwardRef((props, ref) => {
         (model) => model.name.toLowerCase() === inputValue.toLowerCase()
       ) === -1
     ) {
-      setSelectedModel(null);
       dispatch(
         createModelRequest({
           name: inputValue,
@@ -672,7 +689,6 @@ const CarContent = forwardRef((props, ref) => {
                 handleChange("car_model_id", option.value);
               }}
               onCreateOption={(e) => handleCreate(e, true)}
-              key={modelsOptions.length}
               options={modelsOptions}
               value={selectedModel}
             />
@@ -953,12 +969,16 @@ const CarContent = forwardRef((props, ref) => {
           <div className="col-12 mb-3">
             <label htmlFor="Description">Description</label>
             <CKEditor
-              initData={id ? car?.description : ""}
+              initData={id ? car?.description : description}
               onChange={(event) => {
                 const description = event.editor.getData();
-                setSelectedCar((prevState) => {
-                  return { ...prevState, description };
-                });
+                if (id) {
+                  setSelectedCar((prevState) => {
+                    return { ...prevState, description };
+                  });
+                } else {
+                  setDescription(description);
+                }
               }}
             />
           </div>
