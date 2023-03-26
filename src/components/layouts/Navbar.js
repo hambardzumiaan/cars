@@ -30,6 +30,37 @@ const Navbar = () => {
           <ul className="nav flex-column">
             <li className="nav-item pt-3">
               <span className="font-monospace nav-link text-white-50">
+                Delivery
+              </span>
+            </li>
+            <li
+              className={`nav-item menu-link-element ${
+                ["/delivery"].includes(url) ? "bg-primary" : ""
+              }`}
+            >
+              <Link
+                className="nav-link text-white"
+                to="/delivery"
+                title="Delivery"
+              >
+                <span className="menu-link-text pl-2">Calculate</span>
+              </Link>
+            </li>
+            <li
+              className={`nav-item menu-link-element ${
+                url.includes("/delivery-services") ? "bg-primary" : ""
+              }`}
+            >
+              <Link
+                className="nav-link text-white"
+                to="/delivery-services"
+                title="Delivery Services"
+              >
+                <span className="menu-link-text pl-2">Services</span>
+              </Link>
+            </li>
+            <li className="nav-item pt-3">
+              <span className="font-monospace nav-link text-white-50">
                 Info
               </span>
             </li>

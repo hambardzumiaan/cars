@@ -10,9 +10,11 @@ axiosApiInstance.interceptors.request.use(
       ? process.env.REACT_APP_API_URL
       : window.location.origin + "/api";
     if (Authorization) {
+      if (!config.url.includes("delivery")) {
+        config.headers["Content-Type"] = "multipart/form-data";
+        config.headers["enctype"] = "multipart/form-data";
+      }
       config.headers.Authorization = `Bearer ${Authorization}`;
-      config.headers["Content-Type"] = "multipart/form-data";
-      config.headers["enctype"] = "multipart/form-data";
     }
     return config;
   },

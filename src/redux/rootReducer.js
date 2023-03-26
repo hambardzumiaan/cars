@@ -14,6 +14,7 @@ import engines from "./engines/reducer";
 import years from "./years/reducer";
 import seats from "./seats/reducer";
 import stickers from "./stickers/reducer";
+import delivery from "./delivery/reducer";
 
 const rootReducer = combineReducers({
   auth,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   years,
   seats,
   stickers,
+  delivery,
 });
 
 export default rootReducer;

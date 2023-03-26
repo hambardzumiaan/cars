@@ -14,6 +14,7 @@ import years from "./years/saga";
 import seats from "./seats/saga";
 import stickers from "./stickers/saga";
 import cars from "./cars/saga";
+import delivery from "./delivery/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -32,5 +33,6 @@ export default function* rootSaga() {
     years(),
     seats(),
     stickers(),
+    delivery(),
   ]);
 }

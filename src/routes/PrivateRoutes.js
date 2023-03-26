@@ -42,6 +42,10 @@ import UpdateSeat from "../components/seats/UpdateSeat";
 import Stickers from "../components/stickers";
 import CreateSticker from "../components/stickers/CreateSticker";
 import UpdateSticker from "../components/stickers/UpdateSticker";
+import Delivery from "../components/delivery/index";
+import DeliveryServices from "../components/delivery/services";
+import DeliveryService from "../components/delivery/CreateDeliveryService";
+import UpdateDeliveryService from "../components/delivery/UpdateDeliveryService";
 
 export const privateRoutes = [
   {
@@ -460,6 +464,46 @@ export const privateRoutes = [
     element: (
       <MainLayout>
         <UpdateSticker />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 44,
+    path: "/delivery",
+    element: (
+      <MainLayout>
+        <Delivery />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 45,
+    path: "/delivery-services",
+    element: (
+      <MainLayout>
+        <DeliveryServices />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 46,
+    path: "/delivery-service",
+    element: (
+      <MainLayout>
+        <DeliveryService />
+      </MainLayout>
+    ),
+    exact: true,
+  },
+  {
+    id: 47,
+    path: "/delivery-services/:id",
+    element: (
+      <MainLayout>
+        <UpdateDeliveryService />
       </MainLayout>
     ),
     exact: true,
